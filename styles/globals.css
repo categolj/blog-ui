@@ -1,16 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, metropolis-light, Helvetica, sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    @apply underline decoration-0 underline-offset-2 decoration-dotted
+}
+
+h1 {
+    @apply font-extrabold text-2xl py-1;
+}
+
+h2 {
+    @apply font-bold text-xl py-2;
+}
+
+h2:before {
+    content: "🍋️️️ "
+}
+
+h3 {
+    @apply font-semibold py-3 underline decoration-0 underline-offset-4 decoration-wavy;
+}
+
+h3:before {
+    content: "☕️ "
+}
+
+h4 {
+    @apply py-1
+}
+
+h4:before {
+    content: "🍃 "
+}
+
+h5 {
+    @apply py-1
+}
+
+h5:before {
+    content: "✈️️ "
+}
+
+h6:before {
+    content: "☁️ "
+}
+
+dt {
+    @apply underline underline-offset-4 decoration-1;
+}
+
+dd {
+    @apply pl-2;
+}
+
+hr {
+    @apply pb-2 mt-2;
+}
+
+pre > code {
+    @apply text-sm font-mono;
+}
+
+pre {
+    @apply rounded-md border-solid border bg-neutral-200 dark:bg-neutral-800 border-gray-500 overflow-x-auto pl-2 py-2 my-1;
+    line-height: 1;
+}
+
+p code {
+    padding: 2px;
+    @apply text-sm rounded-md border-solid border bg-neutral-200 dark:bg-neutral-800 border-gray-500 mx-1;
+}
+
+article > ul {
+    @apply list-disc py-1;
+}
+
+article > ul, article > ul > li > ul {
+    @apply list-disc pl-4;
+}
+
+article > ul, article > ul > li > ul > li > ul {
+    @apply list-disc pl-4;
 }
