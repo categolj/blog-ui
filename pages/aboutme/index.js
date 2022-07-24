@@ -1,14 +1,10 @@
-import Image from 'next/image';
-
 export default function Index() {
     return <>
         <h2>About Me</h2>
-        <Image src="https://avatars2.githubusercontent.com/u/106908?s=200"
-               width={180}
-               height={180}
-               alt="@making"
-               className="rounded-md"
-        />
+        <img src={"https://avatars2.githubusercontent.com/u/106908?s=200"} width={180}
+             height={180}
+             alt="@making"
+             className="rounded-md"/>
         <h3>Name</h3>
         <p>Toshiaki Maki / 槙 俊明</p>
         <p>having a dog 🐩 (<a href="https://en.wikipedia.org/wiki/Bichon_Frise">Bichon
