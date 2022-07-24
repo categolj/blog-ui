@@ -4,6 +4,7 @@ import {isPC} from "../../utils/userAgents";
 import {entriesFetcherHttp, entriesFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import {useRouter} from "next/router";
+import Head from "next/head";
 
 export default function Entries({entries}) {
     const router = useRouter();
@@ -16,6 +17,9 @@ export default function Entries({entries}) {
     entries = entries || data;
     return (
         <div>
+            <Head>
+                <title>Entries - IK.AM</title>
+            </Head>
             <h2>Entries</h2>
             <ListEntries entries={entries}/>
         </div>

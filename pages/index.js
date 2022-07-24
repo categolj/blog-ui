@@ -4,6 +4,7 @@ import useSWR from "swr";
 import {entriesFetcherHttp, entriesFetcherRSocket} from "../utils/fetcher";
 import Github from "../components/github";
 import Presentations from "../components/presentations";
+import Head from "next/head";
 
 const fetchGithub = () => fetch('https://api.github.com/search/repositories?q=user:making&sort=updated&order=desc')
     .then(data => data.json())
@@ -17,6 +18,9 @@ export default function Home({entries}) {
     const {data: presos, error: errorPresos} = useSWR('/presos', fetchPresentations);
     return (
         <div>
+            <Head>
+                <title>IK.AM</title>
+            </Head>
             <h2>Home</h2>
             <h3>Latest Entries</h3>
             <ListEntries entries={entries || latest}/>

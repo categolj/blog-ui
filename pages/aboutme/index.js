@@ -1,5 +1,9 @@
+import Head from "next/head";
 export default function Index() {
     return <>
+        <Head>
+            <title>About Me - IK.AM</title>
+        </Head>
         <h2>About Me</h2>
         <img src={"https://avatars2.githubusercontent.com/u/106908?s=200"} width={180}
              height={180}

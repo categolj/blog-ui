@@ -7,6 +7,7 @@ import useSWR from "swr";
 import marked from "../../utils/marked";
 import {entryFetcherHttp, entryFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
+import Head from "next/head";
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, entryFetcherRSocket);
@@ -18,6 +19,9 @@ export default function Entry({entryId, entry}) {
     const tags = entry.frontMatter.tags.map(x => <span key={x.name}><Tag
         name={x.name}/>&nbsp;</span>);
     return <div>
+        <Head>
+            <title>{entry.frontMatter.title} - IK.AM</title>
+        </Head>
         <h2><Link href={`/entries/${entryId}`}><a>{entry.frontMatter.title}</a></Link>
         </h2>
         <div className="text-sm">
@@ -27,7 +31,7 @@ export default function Entry({entryId, entry}) {
             {tags.length > 0 && <br/>}
             {entryDate(entry)}&nbsp;&nbsp;
             {!isIgnoreUpdateDate(entry) &&
-            <span>🗓 Created at {entry.created.date}</span>}&nbsp;
+                <span>🗓 Created at {entry.created.date}</span>}&nbsp;
             <span>
                 {`{`}✒️️&nbsp;<a
                 href={`https://github.com/making/blog.ik.am/edit/master/content/${formatId(entryId)}.md`}>Edit</a>&nbsp;
