@@ -17,7 +17,8 @@ export default function EntriesByCategory() {
     } = useSWR({categories, size: 30}, entriesFetcherRSocket);
     return <div>
         <Head>
-            <title>Entries (Category: {categories.join('/')}) - IK.AM</title>
+            <title>Entries (Category: {categories && categories.join('/')}) -
+                IK.AM</title>
         </Head>
         <h2>Entries (Category: <Category category={categories}/>)</h2>
         {(data && data.length > 0) ? <ListEntries entries={data}/> :
