@@ -40,6 +40,10 @@ export default function Header() {
                     </Link>
                 </Item>
                 <Item>
+                    <a style={{textDecoration: 'none'}} href="https://blog.ik.am"
+                       rel="noopener noreferrer">Old UI</a>
+                </Item>
+                <Item>
                     <ThemeButton/>
                 </Item>
             </ul>
