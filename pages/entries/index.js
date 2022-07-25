@@ -9,7 +9,7 @@ import Head from "next/head";
 export default function Entries({entries}) {
     const router = useRouter();
     const {query} = router.query;
-    const params = {size: 30};
+    const params = {size: 50};
     if (query) {
         params.query = query;
     }
