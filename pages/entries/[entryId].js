@@ -8,6 +8,7 @@ import marked from "../../utils/marked";
 import {entryFetcherHttp, entryFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import Head from "next/head";
+import ScrollToTop from "react-scroll-to-top";
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, entryFetcherRSocket);
@@ -44,6 +45,7 @@ export default function Entry({entryId, entry}) {
         <hr/>
         <article
             dangerouslySetInnerHTML={{__html: entry.content && marked.render(entry.content)}}/>
+        <ScrollToTop smooth style={{'padding-left': '5px'}}/>
     </div>;
 }
 
