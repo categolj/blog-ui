@@ -19,8 +19,12 @@ export default function Index() {
         <p>makingx@gmail.com</p>
         <h3>Work Experience</h3>
         <dl>
-            <dt>Apr 2020 - Present</dt>
-            <dd>Staff Solutions Architect at <a href={'https://www.vmware.com'}>VMware</a>,
+            <dt>Aug 2022 - Present</dt>
+            <dd>Senior Staff Cloud Native Architect at <a href={'https://www.vmware.com'}>VMware</a>,
+                Tokyo
+            </dd>
+            <dt>Apr 2020 - Jul 2022</dt>
+            <dd>Staff Cloud Native Architect at <a href={'https://www.vmware.com'}>VMware</a>,
                 Tokyo
             </dd>
             <dt>Sep 2018 - Apr 2020</dt>
