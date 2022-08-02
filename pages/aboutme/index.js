@@ -5,7 +5,7 @@ export default function Index() {
             <title>About Me - IK.AM</title>
         </Head>
         <h2>About Me</h2>
-        <img src={"https://avatars2.githubusercontent.com/u/106908?s=200"} width={180}
+        <img src={"https://avatars.githubusercontent.com/u/106908?s=200"} width={180}
              height={180}
              alt="@making"
              className="rounded-md"/>
