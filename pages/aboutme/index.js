@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 export default function Index() {
     return <>
         <Head>
@@ -18,25 +19,24 @@ export default function Index() {
         <h3>Email</h3>
         <p>makingx@gmail.com</p>
         <h3>Work Experience</h3>
+        <h4><a href={'https://www.vmware.com'}>VMware</a></h4>
         <dl>
             <dt>Aug 2022 - Present</dt>
-            <dd>Senior Staff Cloud Native Architect at <a href={'https://www.vmware.com'}>VMware</a>,
-                Tokyo
-            </dd>
+            <dd>Senior Staff Cloud Native Architect, Tokyo</dd>
             <dt>Apr 2020 - Jul 2022</dt>
-            <dd>Staff Cloud Native Architect at <a href={'https://www.vmware.com'}>VMware</a>,
-                Tokyo
-            </dd>
+            <dd>Staff Cloud Native Architect, Tokyo</dd>
+        </dl>
+        <h4><a href={'https://pivotal.io'}>Pivotal</a></h4>
+        <dl>
             <dt>Sep 2018 - Apr 2020</dt>
-            <dd>Advisory Solutions Architect at <a href={'https://pivotal.io'}>Pivotal</a>,
-                Tokyo
-            </dd>
+            <dd>Advisory Solutions Architect ,Tokyo</dd>
             <dt>Jan 2016 - Aug 2018</dt>
-            <dd>Senior Solutions Architect at <a href={'https://pivotal.io'}>Pivotal</a>,
-                Tokyo
-            </dd>
+            <dd>Senior Solutions Architect,Tokyo</dd>
+        </dl>
+        <h4><a href={'https://www.nttdata.com'}>NTTDATA</a></h4>
+        <dl>
             <dt>Apr 2009 - Dec 2015</dt>
-            <dd><a href={'https://www.nttdata.com'}>NTTDATA</a>, Tokyo</dd>
+            <dd>Assistant Manager, Tokyo</dd>
         </dl>
         <h3>Education</h3>
         <dl>
