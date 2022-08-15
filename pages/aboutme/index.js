@@ -12,7 +12,7 @@ export default function Index() {
              className="rounded-md"/>
         <h3>Name</h3>
         <p>Toshiaki Maki / 槙 俊明</p>
-        <p>having a dog 🐩 (<a href="https://en.wikipedia.org/wiki/Bichon_Frise">Bichon
+        <p>has a dog 🐩 (<a href="https://en.wikipedia.org/wiki/Bichon_Frise">Bichon
             Frise</a>). Lemon&nbsp;🍋 is her name-o :)</p>
         <h3>Twitter</h3>
         <p><a href="https://twitter.com/making">@making</a></p>
