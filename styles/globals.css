@@ -69,6 +69,10 @@ hr {
     @apply pb-2 mt-2;
 }
 
+h4 + dl {
+    @apply pl-5;
+}
+
 pre > code {
     @apply text-sm font-mono;
 }
