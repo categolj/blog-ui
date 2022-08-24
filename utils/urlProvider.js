@@ -1,8 +1,16 @@
+const DEFAULT_API_URL = 'https://blog-api-blog.apps.ik.am';
+
+const replaceUiToApi = url => {
+    if (url.startsWith("http://blog") || url.startsWith("https://blog")) {
+        return url.replace('/blog.', '/blog-ui.').replace('-frontend', '-api').replace('-ui', '-api');
+    }
+    return DEFAULT_API_URL;
+}
+
 const urlMap = (typeof window === 'object') ? {
-    BLOG_API: (process.env.REACT_APP_BLOG_API && process.env.REACT_APP_BLOG_API.toLowerCase() === "auto") ? `${document.location.protocol}//${document.location.hostname.replace(".", "-api.")}` : process.env.REACT_APP_BLOG_API || 'https://blog-api-blog.apps.ik.am',
-    BLOG_UI: (process.env.REACT_APP_BLOG_UI && process.env.REACT_APP_BLOG_UI.toLowerCase() === "auto") ? `${document.location.protocol}//${document.location.hostname}` : process.env.REACT_APP_BLOG_UI || 'https://blog-ui-blog.apps.ik.am'
+    BLOG_API: (process.env.NEXT_PUBLIC_APP_BLOG_API && process.env.NEXT_PUBLIC_APP_BLOG_API.toLowerCase() === "auto") ? replaceUiToApi(`${document.location.protocol}//${document.location.hostname}`) : process.env.NEXT_PUBLIC_APP_BLOG_API || DEFAULT_API_URL,
 } : {
-    BLOG_API: 'https://blog-api-blog.apps.ik.am',
-    BLOG_UI: 'https://blog-ui-blog.apps.ik.am'
+    BLOG_API: DEFAULT_API_URL
 };
+
 export default urlMap;
