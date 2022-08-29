@@ -17,7 +17,7 @@ export default function Index() {
         <h3>Twitter</h3>
         <p><a href="https://twitter.com/making">@making</a></p>
         <h3>Email</h3>
-        <p>makingx@gmail.com</p>
+        <p>makingx [at] gmail.com</p>
         <h3>Work Experience</h3>
         <h4><a href={'https://www.vmware.com'}>VMware</a></h4>
         <dl>
