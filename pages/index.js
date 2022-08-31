@@ -20,6 +20,8 @@ export default function Home({entries}) {
         <div>
             <Head>
                 <title>IK.AM</title>
+                <link rel="alternate" type="application/rss+xml" title="IK.AM"
+                      href="/feed"/>
             </Head>
             <h2>Home</h2>
             <h3>Latest Entries</h3>
