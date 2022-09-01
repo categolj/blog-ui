@@ -5,11 +5,14 @@ import {entriesFetcherHttp, entriesFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import {useRouter} from "next/router";
 import Head from "next/head";
+import NextButton from "../../components/next-button";
 
 export default function Entries({entries}) {
     const router = useRouter();
-    const {query} = router.query;
-    const params = {size: 50};
+    let {query, page, size} = router.query;
+    page = Number(page || 0);
+    size = Number(size || 50);
+    const params = {size: size + 1, page: page};
     if (query) {
         params.query = query;
     }
@@ -21,15 +24,16 @@ export default function Entries({entries}) {
                 <title>Entries - IK.AM</title>
             </Head>
             <h2>Entries</h2>
-            <ListEntries entries={entries}/>
+            <ListEntries entries={entries} size={size}/>
+            <NextButton data={data} currentPage={page} size={size}/>
         </div>
     );
 }
 
-export function ListEntries({entries}) {
+export function ListEntries({entries, size}) {
     return (entries ?
         <ul className="list-disc list-inside">
-            {entries.map((entry) => {
+            {entries.slice(0, size).map((entry) => {
                 return <li key={entry.entryId}>
                     <Link
                         href={`/entries/${entry.entryId}`}><a>{entry.frontMatter.title}</a></Link>
