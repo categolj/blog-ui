@@ -78,6 +78,7 @@ pre > code {
 }
 
 blockquote {
+    margin: 10px 0;
     @apply text-xs rounded-md border-dashed border bg-neutral-100 dark:bg-neutral-700 border-gray-500 pl-2 pr-2 py-2 my-1
 }
 
