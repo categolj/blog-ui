@@ -9,6 +9,7 @@ import {entryFetcherHttp, entryFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import Head from "next/head";
 import ScrollToTop from "react-scroll-to-top";
+const pino = require('pino')()
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, entryFetcherRSocket);
@@ -51,6 +52,7 @@ export default function Entry({entryId, entry}) {
 
 export async function getServerSideProps({req, params}) {
     const entryId = params.entryId;
+    pino.info(req);
     const entry = isPC(req.headers) ? null : await entryFetcherHttp(entryId);
     if (entry && entry.status === 404) {
         return {
