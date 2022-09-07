@@ -1,5 +1,6 @@
 import Head from "next/head";
 import {NextSeo} from "next-seo";
+import Image from "next/image";
 
 export default function Index() {
     return <>
@@ -12,7 +13,7 @@ export default function Index() {
             <title>About Me - IK.AM</title>
         </Head>
         <h2>About Me</h2>
-        <img src={"https://avatars.githubusercontent.com/u/106908?s=200"} width={180}
+        <Image src={"https://avatars.githubusercontent.com/u/106908?s=200"} width={180}
              height={180}
              alt="@making"
              className="rounded-md"/>
