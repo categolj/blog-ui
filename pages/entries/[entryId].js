@@ -64,15 +64,15 @@ export default function Entry({entryId, entry}) {
             dangerouslySetInnerHTML={{__html: entry.content && marked.render(entry.content)}}/>
         <hr/>
         <TwitterShareButton url={`https://ik.am/entries/${entryId}`}
-                            title={`${entry.frontMatter.title} - IK.AM`}>
+                            title={`${entry.frontMatter.title}`}>
             <TwitterIcon size={32} round={true}/>
         </TwitterShareButton>&nbsp;
         <FacebookShareButton url={`https://ik.am/entries/${entryId}`}
-                             title={`${entry.frontMatter.title} - IK.AM`}>
+                             title={`${entry.frontMatter.title}`}>
             <FacebookIcon size={32} round={true}/>
         </FacebookShareButton>&nbsp;
         <LineShareButton url={`https://ik.am/entries/${entryId}`}
-                         title={`${entry.frontMatter.title} - IK.AM`}>
+                         title={`${entry.frontMatter.title}`}>
             <LineIcon size={32} round={true}/>
         </LineShareButton>&nbsp;
         <ScrollToTop smooth style={{'padding-left': '5px'}}/>
