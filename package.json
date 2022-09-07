@@ -13,6 +13,7 @@
     "marked": "^4.1.0",
     "next": "12.2.5",
     "next-logger": "^3.0.1",
+    "next-seo": "^5.5.0",
     "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

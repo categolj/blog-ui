@@ -5,12 +5,18 @@ import {ListEntries} from "../../entries";
 import Loading from "../../../components/loading";
 import {entriesFetcherRSocket} from "../../../utils/fetcher";
 import Head from "next/head";
+import {NextSeo} from "next-seo";
 
 export default function EntriesByTag() {
     const router = useRouter();
     const {tag} = router.query;
     const {data, error} = useSWR({tag: tag, size: 30}, entriesFetcherRSocket);
     return <div>
+        <NextSeo title={`Entries (Tag: ${tag})`}
+                 canonical={`https://ik.am/tags/${tag}/entries`}
+                 openGraph={{
+                     url: `https://ik.am/tags/${tag}/entries`
+                 }}/>
         <Head>
             <title>Entries (Tag: {`🏷 ${tag}`}) - IK.AM</title>
         </Head>

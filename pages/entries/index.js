@@ -6,6 +6,7 @@ import Loading from "../../components/loading";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import NextButton from "../../components/next-button";
+import {NextSeo} from 'next-seo'
 
 export default function Entries({entries}) {
     const router = useRouter();
@@ -20,6 +21,11 @@ export default function Entries({entries}) {
     entries = entries || data;
     return (
         <div>
+            <NextSeo title='Entries'
+                     canonical='https://ik.am/entries'
+                     openGraph={{
+                         url: 'https://ik.am/entries'
+                     }}/>
             <Head>
                 <title>Entries - IK.AM</title>
             </Head>

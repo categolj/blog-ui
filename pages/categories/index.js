@@ -3,10 +3,16 @@ import {categoriesFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import useSWR from "swr";
 import Head from "next/head";
+import {NextSeo} from "next-seo";
 
 export default function Categories({}) {
     const {data, error} = useSWR('/categories', categoriesFetcherRSocket);
     return <div>
+        <NextSeo title='Categories'
+                 canonical='https://ik.am/categories'
+                 openGraph={{
+                     url: 'https://ik.am/categories'
+                 }}/>
         <Head>
             <title>Categories - IK.AM</title>
         </Head>

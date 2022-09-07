@@ -3,10 +3,16 @@ import {tagsFetcherRSocket} from "../../utils/fetcher";
 import Tag from "../../components/tag";
 import Loading from "../../components/loading";
 import Head from "next/head";
+import {NextSeo} from "next-seo";
 
 export default function Tags({}) {
     const {data, error} = useSWR('/tag', tagsFetcherRSocket);
     return <div>
+        <NextSeo title='Tags'
+                 canonical='https://ik.am/tags'
+                 openGraph={{
+                     url: 'https://ik.am/tags'
+                 }}/>
         <Head>
             <title>Tags - IK.AM</title>
         </Head>

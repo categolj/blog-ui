@@ -6,16 +6,22 @@ import {ListEntries} from "../../entries";
 import Category from "../../../components/category";
 import Loading from "../../../components/loading";
 import Head from "next/head";
+import {NextSeo} from "next-seo";
 
 export default function EntriesByCategory() {
     const router = useRouter();
-    let {categories} = router.query;
-    categories = categories && categories.split(',');
+    const categoriesQuery = router.query.categories;
+    const categories = categoriesQuery && categoriesQuery.split(',');
     const {
         data,
         error
     } = useSWR({categories, size: 30}, entriesFetcherRSocket);
     return <div>
+        <NextSeo title={`Entries (Category: ${categories && categories.join('/')})`}
+                 canonical={`https://ik.am/categories/${categoriesQuery}/entries`}
+                 openGraph={{
+                     url: `https://ik.am/categories/${categoriesQuery}/entries`
+                 }}/>
         <Head>
             <title>Entries (Category: {categories && categories.join('/')}) -
                 IK.AM</title>

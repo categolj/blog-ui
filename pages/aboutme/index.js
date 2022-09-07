@@ -1,7 +1,13 @@
 import Head from "next/head";
+import {NextSeo} from "next-seo";
 
 export default function Index() {
     return <>
+        <NextSeo title={`About Me`}
+                 canonical={`https://ik.am/aboutme`}
+                 openGraph={{
+                     url: `https://ik.am/aboutme`
+                 }}/>
         <Head>
             <title>About Me - IK.AM</title>
         </Head>

@@ -9,6 +9,8 @@ import {entryFetcherHttp, entryFetcherRSocket} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import Head from "next/head";
 import ScrollToTop from "react-scroll-to-top";
+import {NextSeo} from "next-seo";
+
 const pino = require('pino')()
 
 export default function Entry({entryId, entry}) {
@@ -21,6 +23,12 @@ export default function Entry({entryId, entry}) {
     const tags = entry.frontMatter.tags.map(x => <span key={x.name}><Tag
         name={x.name}/>&nbsp;</span>);
     return <div>
+        <NextSeo title={entry.frontMatter.title}
+                 canonical={`https://ik.am/entries/${entryId}`}
+                 description={entry.content.substring(0, 200) + '...'}
+                 openGraph={{
+                     url: `https://ik.am/entries/${entryId}`
+                 }}/>
         <Head>
             <title>{entry.frontMatter.title} - IK.AM</title>
         </Head>
