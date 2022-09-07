@@ -10,6 +10,14 @@ import Loading from "../../components/loading";
 import Head from "next/head";
 import ScrollToTop from "react-scroll-to-top";
 import {NextSeo} from "next-seo";
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    LineIcon,
+    LineShareButton,
+    TwitterIcon,
+    TwitterShareButton
+} from "react-share";
 
 const pino = require('pino')()
 
@@ -54,6 +62,19 @@ export default function Entry({entryId, entry}) {
         <hr/>
         <article
             dangerouslySetInnerHTML={{__html: entry.content && marked.render(entry.content)}}/>
+        <hr/>
+        <TwitterShareButton url={`https://ik.am/entries/${entryId}`}
+                            title={`${entry.frontMatter.title} - IK.AM`}>
+            <TwitterIcon size={32} round={true}/>
+        </TwitterShareButton>&nbsp;
+        <FacebookShareButton url={`https://ik.am/entries/${entryId}`}
+                             title={`${entry.frontMatter.title} - IK.AM`}>
+            <FacebookIcon size={32} round={true}/>
+        </FacebookShareButton>&nbsp;
+        <LineShareButton url={`https://ik.am/entries/${entryId}`}
+                         title={`${entry.frontMatter.title} - IK.AM`}>
+            <LineIcon size={32} round={true}/>
+        </LineShareButton>&nbsp;
         <ScrollToTop smooth style={{'padding-left': '5px'}}/>
     </div>;
 }

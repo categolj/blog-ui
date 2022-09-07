@@ -16,6 +16,13 @@ export default function MyApp({Component, pageProps}) {
                         type: 'website',
                         locale: 'ja_JP',
                         site_name: 'IK.AM',
+                        images: [
+                            {
+                                url: 'https://raw.githubusercontent.com/categolj/blog-frontend/master/blog-frontend-ui/public/apple-icon-120x120.png',
+                                width: 120,
+                                height: 120
+                            }
+                        ]
                     }}
                     twitter={{
                         handle: '@making',
