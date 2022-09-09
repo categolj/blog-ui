@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import Head from "next/head";
 import NextButton from "../../components/next-button";
 import {NextSeo} from 'next-seo'
+const pino = require('pino')()
 
 export default function Entries({entries}) {
     const router = useRouter();
@@ -51,6 +52,7 @@ export function ListEntries({entries, size}) {
 }
 
 export async function getServerSideProps({req, query}) {
+    pino.info(req);
     const params = {size: 30};
     if (query.query) {
         params.query = query.query;
