@@ -104,7 +104,7 @@ article > ul, article > ul > li > ul > li > ul {
     @apply list-disc pl-4;
 }
 
-img[alt=alt_text] {
+img[alt=image], img[alt=alt_text] {
     width: 1024px;
     padding: 10px;
 }
