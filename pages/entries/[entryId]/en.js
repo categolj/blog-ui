@@ -8,9 +8,9 @@ export default function English() {
     return (
         <div>
             <article>
-                Sorry, the translation page is not currently supported.<br/>
-                Please use Google Translate bellow:<br/>
-                <a href={url}>{url}</a>
+                🙇‍ Sorry, the translation page is not currently supported.<br/><br/>
+                Please use Google Translate bellow:<br/><br/>
+                🌎 <a href={url}>{url}</a>
             </article>
         </div>
     )
