@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import useSWR from 'swr';
 import {isPC} from "../../utils/userAgents";
-import {entriesFetcherHttp, entriesFetcherRSocket} from "../../utils/fetcher";
+import {entriesFetcherHttp} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import {useRouter} from "next/router";
 import Head from "next/head";
@@ -18,7 +18,7 @@ export default function Entries({entries}) {
     if (query) {
         params.query = query;
     }
-    const {data, error} = useSWR(params, entriesFetcherRSocket);
+    const {data, error} = useSWR(params, entriesFetcherHttp);
     entries = entries || data;
     return (
         <div>

@@ -38,6 +38,9 @@ export async function tagsFetcherRSocket() {
     return response.data;
 }
 
+export async function tagsFetcherHttp() {
+    return fetch(`${urlProvider.BLOG_API}/tags`).then(res => res.json());
+}
 
 export async function categoriesFetcherRSocket() {
     const rsocket = await rsocketFactory.getRSocket();
@@ -45,4 +48,8 @@ export async function categoriesFetcherRSocket() {
         metadata: rsocketFactory.routingMetadata(`categories`)
     });
     return response.data;
+}
+
+export async function categoriesFetcherHttp() {
+    return fetch(`${urlProvider.BLOG_API}/categories`).then(res => res.json());
 }

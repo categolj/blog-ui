@@ -1,12 +1,12 @@
 import useSWR from 'swr'
-import {tagsFetcherRSocket} from "../../utils/fetcher";
+import {tagsFetcherHttp} from "../../utils/fetcher";
 import Tag from "../../components/tag";
 import Loading from "../../components/loading";
 import Head from "next/head";
 import {NextSeo} from "next-seo";
 
 export default function Tags({}) {
-    const {data, error} = useSWR('/tag', tagsFetcherRSocket);
+    const {data, error} = useSWR('/tag', tagsFetcherHttp);
     return <div>
         <NextSeo title='Tags'
                  canonical='https://ik.am/tags'

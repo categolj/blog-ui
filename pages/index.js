@@ -1,7 +1,7 @@
 import {ListEntries} from "./entries";
 import {isPC} from "../utils/userAgents";
 import useSWR from "swr";
-import {entriesFetcherHttp, entriesFetcherRSocket} from "../utils/fetcher";
+import {entriesFetcherHttp} from "../utils/fetcher";
 import Github from "../components/github";
 import Presentations from "../components/presentations";
 import Head from "next/head";
@@ -13,7 +13,7 @@ const fetchPresentations = () => fetch('https://raw.githubusercontent.com/catego
     .then(data => data.json());
 
 export default function Home({entries}) {
-    const {data: latest, error: errorLatest} = useSWR({size: 15}, entriesFetcherRSocket);
+    const {data: latest, error: errorLatest} = useSWR({size: 15}, entriesFetcherHttp);
     const {data: github, error: errorGithub} = useSWR('/github', fetchGithub);
     const {data: presos, error: errorPresos} = useSWR('/presos', fetchPresentations);
     return (

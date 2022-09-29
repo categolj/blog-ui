@@ -5,7 +5,7 @@ import Category from "../../components/category";
 import {isPC} from "../../utils/userAgents";
 import useSWR from "swr";
 import marked from "../../utils/marked";
-import {entryFetcherHttp, entryFetcherRSocket} from "../../utils/fetcher";
+import {entryFetcherHttp} from "../../utils/fetcher";
 import Loading from "../../components/loading";
 import Head from "next/head";
 import ScrollToTop from "react-scroll-to-top";
@@ -22,7 +22,7 @@ import {
 const pino = require('pino')()
 
 export default function Entry({entryId, entry}) {
-    const {data, error} = useSWR(entryId, entryFetcherRSocket);
+    const {data, error} = useSWR(entryId, entryFetcherHttp);
     entry = entry || data;
     if (!entry || !entry.frontMatter) {
         return <Loading/>;
