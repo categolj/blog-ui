@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 
 import {useRouter} from "next/router";
-import {entriesFetcherHttp} from "../../../utils/fetcher";
+import {fetchEntries} from "../../../utils/fetcherHttp";
 import {ListEntries} from "../../entries";
 import Category from "../../../components/category";
 import Loading from "../../../components/loading";
@@ -15,7 +15,7 @@ export default function EntriesByCategory() {
     const {
         data,
         error
-    } = useSWR({categories, size: 30}, entriesFetcherHttp);
+    } = useSWR({categories, size: 30}, fetchEntries);
     return <div>
         <NextSeo title={`Entries (Category: ${categories && categories.join('/')})`}
                  canonical={`https://ik.am/categories/${categoriesQuery}/entries`}

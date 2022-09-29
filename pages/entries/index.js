@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import useSWR from 'swr';
 import {isPC} from "../../utils/userAgents";
-import {entriesFetcherHttp} from "../../utils/fetcher";
+import {fetchEntries} from "../../utils/fetcherHttp";
 import Loading from "../../components/loading";
 import {useRouter} from "next/router";
 import Head from "next/head";
@@ -18,7 +18,7 @@ export default function Entries({entries}) {
     if (query) {
         params.query = query;
     }
-    const {data, error} = useSWR(params, entriesFetcherHttp);
+    const {data, error} = useSWR(params, fetchEntries);
     entries = entries || data;
     return (
         <div>
@@ -57,7 +57,7 @@ export async function getServerSideProps({req, query}) {
     if (query.query) {
         params.query = query.query;
     }
-    const entries = isPC(req.headers) ? null : await entriesFetcherHttp(params);
+    const entries = isPC(req.headers) ? null : await fetchEntries(params);
     return {props: {entries: entries}};
 }
 

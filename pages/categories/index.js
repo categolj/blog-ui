@@ -1,12 +1,12 @@
 import Category from "../../components/category";
-import {categoriesFetcherHttp} from "../../utils/fetcher";
+import {fetchCategories} from "../../utils/fetcherHttp";
 import Loading from "../../components/loading";
 import useSWR from "swr";
 import Head from "next/head";
 import {NextSeo} from "next-seo";
 
 export default function Categories({}) {
-    const {data, error} = useSWR('/categories', categoriesFetcherHttp);
+    const {data, error} = useSWR('/categories', fetchCategories);
     return <div>
         <NextSeo title='Categories'
                  canonical='https://ik.am/categories'

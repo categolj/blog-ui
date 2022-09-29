@@ -1,7 +1,6 @@
 import rsocketFactory from './RSocketFactory';
-import urlProvider from "./urlProvider";
 
-export async function entriesFetcherRSocket(data) {
+export async function fetchEntries(data) {
     const rsocket = await rsocketFactory.getRSocket();
     const response = await rsocket.requestResponse({
         data: data,
@@ -10,15 +9,7 @@ export async function entriesFetcherRSocket(data) {
     return response.data.content;
 }
 
-export async function entriesFetcherHttp(data) {
-    const params = new URLSearchParams();
-    for (let k in data) {
-        params.set(k, data[k]);
-    }
-    return fetch(`${urlProvider.BLOG_API}/entries?${params}`).then(res => res.json()).then(j => j.content);
-}
-
-export async function entryFetcherRSocket(entryId) {
+export async function fetchEntry(entryId) {
     const rsocket = await rsocketFactory.getRSocket();
     const response = await rsocket.requestResponse({
         metadata: rsocketFactory.routingMetadata(`entries.${entryId}`)
@@ -26,11 +17,7 @@ export async function entryFetcherRSocket(entryId) {
     return response.data;
 }
 
-export async function entryFetcherHttp(entryId) {
-    return fetch(`${urlProvider.BLOG_API}/entries/${entryId}`).then(res => res.json());
-}
-
-export async function tagsFetcherRSocket() {
+export async function fetchTags() {
     const rsocket = await rsocketFactory.getRSocket();
     const response = await rsocket.requestResponse({
         metadata: rsocketFactory.routingMetadata(`tags`)
@@ -38,18 +25,10 @@ export async function tagsFetcherRSocket() {
     return response.data;
 }
 
-export async function tagsFetcherHttp() {
-    return fetch(`${urlProvider.BLOG_API}/tags`).then(res => res.json());
-}
-
-export async function categoriesFetcherRSocket() {
+export async function fetchCategories() {
     const rsocket = await rsocketFactory.getRSocket();
     const response = await rsocket.requestResponse({
         metadata: rsocketFactory.routingMetadata(`categories`)
     });
     return response.data;
-}
-
-export async function categoriesFetcherHttp() {
-    return fetch(`${urlProvider.BLOG_API}/categories`).then(res => res.json());
 }

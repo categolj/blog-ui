@@ -1,5 +1,5 @@
 import RSS from 'rss';
-import {entriesFetcherHttp} from "../utils/fetcher";
+import {fetchEntries} from "../utils/fetcherHttp";
 
 export async function generateFeedXml() {
     const feed = new RSS({
@@ -9,7 +9,7 @@ export async function generateFeedXml() {
         feed_url: "https://ik.am/feed",
         language: 'ja',
     });
-    const entries = await entriesFetcherHttp({size: 20});
+    const entries = await fetchEntries({size: 20});
     entries.forEach((entry) => {
         feed.item({
             title: entry.frontMatter.title,

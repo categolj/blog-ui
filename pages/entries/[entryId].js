@@ -5,7 +5,7 @@ import Category from "../../components/category";
 import {isPC} from "../../utils/userAgents";
 import useSWR from "swr";
 import marked from "../../utils/marked";
-import {entryFetcherHttp} from "../../utils/fetcher";
+import {fetchEntry} from "../../utils/fetcherHttp";
 import Loading from "../../components/loading";
 import Head from "next/head";
 import ScrollToTop from "react-scroll-to-top";
@@ -22,7 +22,7 @@ import {
 const pino = require('pino')()
 
 export default function Entry({entryId, entry}) {
-    const {data, error} = useSWR(entryId, entryFetcherHttp);
+    const {data, error} = useSWR(entryId, fetchEntry);
     entry = entry || data;
     if (!entry || !entry.frontMatter) {
         return <Loading/>;
@@ -82,7 +82,7 @@ export default function Entry({entryId, entry}) {
 export async function getServerSideProps({req, params}) {
     const entryId = params.entryId;
     pino.info(req);
-    const entry = isPC(req.headers) ? null : await entryFetcherHttp(entryId);
+    const entry = isPC(req.headers) ? null : await fetchEntry(entryId);
     if (entry && entry.status === 404) {
         return {
             notFound: true,
