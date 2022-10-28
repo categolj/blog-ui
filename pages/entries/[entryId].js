@@ -19,8 +19,6 @@ import {
     TwitterShareButton
 } from "react-share";
 
-const pino = require('pino')()
-
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, fetchEntry);
     entry = entry || data;
@@ -81,7 +79,6 @@ export default function Entry({entryId, entry}) {
 
 export async function getServerSideProps({req, params}) {
     const entryId = params.entryId;
-    pino.info(req);
     const entry = isPC(req.headers) ? null : await fetchEntry(entryId);
     if (entry && entry.status === 404) {
         return {
