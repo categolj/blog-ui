@@ -19,3 +19,7 @@ export async function fetchTags() {
 export async function fetchCategories() {
     return fetch(`${urlProvider.BLOG_API}/categories`).then(res => res.json());
 }
+
+export async function fetchInfo() {
+    return fetch(`${urlProvider.BLOG_API}/info`).then(res => res.json());
+}

@@ -40,6 +40,11 @@ export default function Header() {
                     </Link>
                 </Item>
                 <Item>
+                    <Link href="/info">
+                        <a style={{textDecoration: 'none'}}>Info</a>
+                    </Link>
+                </Item>
+                <Item>
                     <ThemeButton/>
                 </Item>
             </ul>
