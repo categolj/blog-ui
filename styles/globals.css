@@ -109,3 +109,7 @@ img[alt=image], img[alt=alt_text] {
     padding: 10px;
     border-radius: 18px;
 }
+
+table.info-table > tbody > tr > td {
+    @apply text-sm rounded-md border-solid border border-gray-500 mx-1;
+}
