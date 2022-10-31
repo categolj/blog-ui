@@ -112,4 +112,5 @@ img[alt=image], img[alt=alt_text] {
 
 table.info-table > tbody > tr > td {
     @apply text-sm rounded-md border-solid border border-gray-500 mx-1;
+    padding: 2px;
 }

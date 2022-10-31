@@ -72,6 +72,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@kevincobain2000/json-to-html-table@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@kevincobain2000/json-to-html-table/-/json-to-html-table-1.0.1.tgz#86dfaf5445de0cc9ca78bdd54d275e45cb24daa3"
+  integrity sha512-s17VDsNvwAlPhE3wZ6BnKH7pi47mlGCltFfwIQ/9xBkeeBkYdT3A1LhhnpL4jof319wOqD9PrkUb8dP3OCIjbw==
+
 "@next/env@12.3.1":
   version "12.3.1"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-12.3.1.tgz#18266bd92de3b4aa4037b1927aa59e6f11879260"
