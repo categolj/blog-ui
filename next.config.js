@@ -7,6 +7,14 @@ const nextConfig = {
             'avatars2.githubusercontent.com'
         ],
     },
+    webpack: (config, {isServer}) => {
+        if (!isServer) {
+            config.resolve.fallback = {
+                'node-fetch': false
+            }
+        }
+        return config;
+    }
 }
 
 module.exports = nextConfig
