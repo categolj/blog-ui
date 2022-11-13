@@ -32,6 +32,7 @@ const tracer = new Tracer({
             jsonEncoder: JSON_V2
         })
     }),
+    traceId128Bit: true,
     localServiceName: determineServiceName()
 });
 const wrapFetch = require('zipkin-instrumentation-fetch');
