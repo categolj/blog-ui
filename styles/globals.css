@@ -6,7 +6,9 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, metropolis-light, Helvetica, sans-serif;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.3em;
 }
 
 * {
@@ -113,4 +115,10 @@ img[alt=image], img[alt=alt_text] {
 table.info-table > tbody > tr > td {
     @apply text-sm rounded-md border-solid border border-gray-500 mx-1;
     padding: 2px;
+}
+
+.warning {
+    padding: 10px;
+    margin-bottom: 10px;
+    @apply text-sm rounded-md bg-yellow-400 dark:bg-yellow-500;
 }

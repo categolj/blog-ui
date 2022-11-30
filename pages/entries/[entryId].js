@@ -29,7 +29,10 @@ export default function Entry({entryId, entry}) {
     const tags = entry.frontMatter.tags.map(x => <span key={x.name}><Tag
         name={x.name}/>&nbsp;</span>);
     const translationUrl = `https://github-com.translate.goog/making/blog.ik.am/blob/master/content/${formatId(entryId)}.md?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja&_x_tr_pto=wapp`;
-
+    console.log(entry.frontMatter.tags)
+    if (entry.frontMatter.tags.map(x => x.name).includes('Tanzu')) {
+        console.log('Tanzu!');
+    }
     return <div>
         <NextSeo title={entry.frontMatter.title}
                  canonical={`https://ik.am/entries/${entryId}`}
@@ -61,6 +64,11 @@ export default function Entry({entryId, entry}) {
             </span>
         </div>
         <hr/>
+        {entry.frontMatter.tags.map(x => x.name).includes('Tanzu') &&
+            <p className={'warning'}>
+                ️{`⚠️`} 本記事の内容はVMwareによって<strong>サポートされていません</strong>。
+                記事の内容で生じた問題については自己責任で対応し、 VMwareサポート窓口に<strong>問い合わせないでください</strong>。
+            </p>}
         <article
             dangerouslySetInnerHTML={{__html: entry.content && marked.render(entry.content)}}/>
         <hr/>
