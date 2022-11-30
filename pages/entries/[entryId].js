@@ -67,7 +67,7 @@ export default function Entry({entryId, entry}) {
         {entry.frontMatter.tags.map(x => x.name).includes('Tanzu') &&
             <p className={'warning'}>
                 ️{`⚠️`} 本記事の内容はVMwareによって<strong>サポートされていません</strong>。
-                記事の内容で生じた問題については自己責任で対応し、 VMwareサポート窓口に<strong>問い合わせないでください</strong>。
+                記事の内容で生じた問題については自己責任で対応し、 VMwareサポート窓口には<strong>問い合わせないでください</strong>。
             </p>}
         <article
             dangerouslySetInnerHTML={{__html: entry.content && marked.render(entry.content)}}/>
