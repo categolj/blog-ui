@@ -1,3 +1,6 @@
+@import "//fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=latin,cyrillic-ext,greek-ext,cyrillic,greek,vietnamese,latin-ext";
+@import "//fonts.googleapis.com/css?family=Source+Code+Pro";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,7 +77,8 @@ h4 + dl {
 }
 
 pre > code {
-    @apply text-sm font-mono;
+    @apply text-sm;
+    font-family: 'Source Code Pro', monospace
 }
 
 blockquote {
