@@ -1,13 +1,16 @@
 import {marked} from 'marked'
+import GithubSlugger from 'github-slugger'
 
 class Marked {
     constructor(marked) {
         this._marked = marked;
         this.renderer = new marked.Renderer();
+        this.slugger = new GithubSlugger();
     }
 
-    slugify(text) {
-        return text.toLowerCase().replace(/[^\w]+/g, '-');
+    slugify(raw) {
+        const text = raw.toLowerCase().trim().replace(/<[!\/a-z].*?>/ig, '');
+        return this.slugger.slug(text);
     }
 
     render(text) {
@@ -21,17 +24,8 @@ class Marked {
         this._marked.setOptions(options);
     }
 
-    enableHeadingIdUriEncoding() {
-        this.slugify = function (text) {
-            return encodeURIComponent(text);
-        };
-        this.renderer.heading = (text, level) => {
-            var escapedText = this.slugify(text);
-            return '<h' + level + ' id="' + escapedText + '">' + text + '</h' + level + '>\n';
-        };
-    }
-
     toc(text) {
+        this.slugger.reset();
         let tokens = marked.lexer(text);
         tokens = tokens.filter(function (token) {
             if (token.type !== 'heading') {
@@ -89,7 +83,5 @@ marked.setOptions({
 });
 
 export default (function () {
-    const md = new Marked(marked);
-    md.enableHeadingIdUriEncoding();
-    return md;
+    return new Marked(marked);
 })();
