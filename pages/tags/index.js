@@ -11,7 +11,7 @@ export default function Tags({}) {
     const {data, error} = useSWR('/tag', fetchTags);
     const [orderBy, setOrderBy] = useState('name');
     const buttonStyles = {'name': {}, 'count': {}};
-    buttonStyles[orderBy]['font-weight'] = 'bold';
+    buttonStyles[orderBy].fontWeight = 'bold';
     return <div>
         <NextSeo title='Tags'
                  canonical='https://ik.am/tags'
