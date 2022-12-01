@@ -81,7 +81,7 @@ export default function Entry({entryId, entry}) {
                          title={`${entry.frontMatter.title}`}>
             <LineIcon size={32} round={true}/>
         </LineShareButton>&nbsp;
-        <ScrollToTop smooth style={{'padding-left': '5px'}}/>
+        <ScrollToTop smooth style={{paddingLeft: '5px'}}/>
     </div>;
 }
 
