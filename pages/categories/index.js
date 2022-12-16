@@ -6,7 +6,7 @@ import Head from "next/head";
 import {NextSeo} from "next-seo";
 
 export default function Categories({}) {
-    const {data, error} = useSWR('/categories', fetchCategories);
+    const {data, error} = useSWR('/categories', () => fetchCategories());
     return <div>
         <NextSeo title='Categories'
                  canonical='https://ik.am/categories'

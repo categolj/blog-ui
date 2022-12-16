@@ -8,7 +8,7 @@ import React, {useState} from 'react';
 
 
 export default function Tags({}) {
-    const {data, error} = useSWR('/tag', fetchTags);
+    const {data, error} = useSWR('/tag', () => fetchTags());
     const [orderBy, setOrderBy] = useState('name');
     const buttonStyles = {'name': {}, 'count': {}};
     buttonStyles[orderBy].fontWeight = 'bold';
