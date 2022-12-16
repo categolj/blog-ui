@@ -22,8 +22,20 @@ import {
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, fetchEntry);
     entry = entry || data;
-    if (!entry || !entry.frontMatter) {
+    if (!entry) {
         return <Loading/>;
+    }
+    if (entry.status) {
+        return <div>
+            <h2>{entry.title}</h2>
+            <pre><p>{JSON.stringify(entry, null, '  ')}</p></pre>
+        </div>;
+    }
+    if (!entry.frontMatter) {
+        return <div>
+            <h2>{`❗️ Unexpected status`}</h2>
+            <pre><p>{JSON.stringify(entry, null, '  ')}</p></pre>
+        </div>;
     }
     const category = entry.frontMatter.categories.map(x => x.name);
     const tags = entry.frontMatter.tags.map(x => <span key={x.name}><Tag
