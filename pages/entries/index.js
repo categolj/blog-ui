@@ -36,13 +36,13 @@ export default function Entries({entries}) {
     );
 }
 
-export function ListEntries({entries, size}) {
+export function ListEntries({entries, size, lang}) {
     return (entries ?
         <ul className="list-disc list-inside">
             {entries.slice(0, size).map((entry) => {
                 return <li key={entry.entryId}>
                     <Link
-                        href={`/entries/${entry.entryId}`}><a>{entry.frontMatter.title}</a></Link>
+                        href={`/entries/${entry.entryId}${lang ? `/${lang}` : ''}`}><a>{entry.frontMatter.title}</a></Link>
                     &nbsp;{entryDate(entry)}
                 </li>;
             })}

@@ -30,7 +30,7 @@ export default function Entries({entries}) {
                 <title>Entries (en) - IK.AM</title>
             </Head>
             <h2>Entries (en)</h2>
-            <ListEntries entries={entries} size={size}/>
+            <ListEntries entries={entries} size={size} lang={'en'}/>
             <NextButton data={data} currentPage={page} size={size}/>
         </div>
     );
