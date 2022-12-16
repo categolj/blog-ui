@@ -40,7 +40,6 @@ export default function Entry({entryId, entry}) {
     const category = entry.frontMatter.categories.map(x => x.name);
     const tags = entry.frontMatter.tags.map(x => <span key={x.name}><Tag
         name={x.name}/>&nbsp;</span>);
-    const translationUrl = `https://github-com.translate.goog/making/blog.ik.am/blob/master/content/${formatId(entryId)}.md?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja&_x_tr_pto=wapp`;
     return <div>
         <NextSeo title={entry.frontMatter.title}
                  canonical={`https://ik.am/entries/${entryId}`}
@@ -68,7 +67,7 @@ export default function Entry({entryId, entry}) {
                 href={`https://github.com/making/blog.ik.am/commits/master/content/${formatId(entryId)}.md`}>History</a>&nbsp;
                 🗑&nbsp;<a
                 href={`https://github.com/making/blog.ik.am/delete/master/content/${formatId(entryId)}.md`}>Delete</a>{`}`}&nbsp;
-                🌎&nbsp;<a href={translationUrl}>Translation by Google</a>
+                🌎&nbsp;<a href={`/entries/${entryId}/en`}>English Page</a>
             </span>
         </div>
         <hr/>
