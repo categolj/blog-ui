@@ -79,7 +79,7 @@ export default function Entry({entryId, entry}) {
                 href={`https://github.com/making/ik.am_en/commits/master/content/${formatId(entryId)}.md`}>History</a>&nbsp;
                 🗑&nbsp;<a
                 href={`https://github.com/making/ik.am_en/delete/master/content/${formatId(entryId)}.md`}>Delete</a>{`}`}&nbsp;
-                🇯🇵&nbsp;<a href={`https://ik.am/entries/${entryId}`}>Original entry</a>
+                🇯🇵&nbsp;<a href={`/entries/${entryId}`}>Original entry</a>
             </span>
         </div>
         <hr/>
