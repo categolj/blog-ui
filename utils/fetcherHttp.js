@@ -38,24 +38,34 @@ const tracer = new Tracer({
 const wrapFetch = require('zipkin-instrumentation-fetch');
 const zipkinFetch = wrapFetch(fetch, {tracer});
 
-export async function fetchEntries(data) {
+const tenantPrefix = (tenantId) => {
+    return tenantId ? `/tenants/${tenantId}` : '';
+};
+
+const basicAuth = {
+    headers: {
+        'Authorization': 'Basic ' + btoa(`blog-ui:empty`)
+    }
+};
+
+export async function fetchEntries(data, tenantId) {
     const params = new URLSearchParams();
     for (let k in data) {
         params.set(k, data[k]);
     }
-    return zipkinFetch(`${urlProvider.BLOG_API}/entries?${params}`).then(res => res.json()).then(j => j.content);
+    return zipkinFetch(`${urlProvider.BLOG_API}${tenantPrefix(tenantId)}/entries?${params}`, basicAuth).then(res => res.json()).then(j => j.content);
 }
 
-export async function fetchEntry(entryId) {
-    return zipkinFetch(`${urlProvider.BLOG_API}/entries/${entryId}`).then(res => res.json());
+export async function fetchEntry(entryId, tenantId) {
+    return zipkinFetch(`${urlProvider.BLOG_API}${tenantPrefix(tenantId)}/entries/${entryId}`, basicAuth).then(res => res.json());
 }
 
-export async function fetchTags() {
-    return zipkinFetch(`${urlProvider.BLOG_API}/tags`).then(res => res.json());
+export async function fetchTags(tenantId) {
+    return zipkinFetch(`${urlProvider.BLOG_API}${tenantPrefix(tenantId)}/tags`, basicAuth).then(res => res.json());
 }
 
-export async function fetchCategories() {
-    return zipkinFetch(`${urlProvider.BLOG_API}/categories`).then(res => res.json());
+export async function fetchCategories(tenantId) {
+    return zipkinFetch(`${urlProvider.BLOG_API}${tenantPrefix(tenantId)}/categories`, basicAuth).then(res => res.json());
 }
 
 export async function fetchInfo() {
