@@ -25,6 +25,11 @@ export default function Header() {
                     </Link>
                 </Item>
                 <Item>
+                    <Link href="/entries/en">
+                        <a style={{textDecoration: 'none'}}>Entries (en)</a>
+                    </Link>
+                </Item>
+                <Item>
                     <Link href="/categories">
                         <a style={{textDecoration: 'none'}}>Categories</a>
                     </Link>
