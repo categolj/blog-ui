@@ -1,10 +1,19 @@
 import Router from "next/router";
 
-export default function NextButton({data, currentPage, size}) {
+const appendQuery = (url, query) => {
+    if (query) {
+        return `${url}&query=${query}`
+    }
+    return url;
+}
+
+export default function NextButton({data, params}) {
+    const size = params.size - 1;
+    const currentPage = params.page;
     const hasNext = data && data.length > size;
     const hasPrev = currentPage !== 0;
-    const nextUrl = `?page=${currentPage + 1}&size=${size}`;
-    const prevUrl = `?page=${currentPage - 1}&size=${size}`;
+    const nextUrl = appendQuery(`?page=${currentPage + 1}&size=${size}`, params.query);
+    const prevUrl = appendQuery(`?page=${currentPage - 1}&size=${size}`, params.query);
     const go = (evt, url) => {
         evt.preventDefault();
         Router.push(url);

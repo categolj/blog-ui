@@ -31,7 +31,7 @@ export default function Entries({entries}) {
             </Head>
             <h2>Entries</h2>
             <ListEntries entries={entries} size={size}/>
-            <NextButton data={data} currentPage={page} size={size}/>
+            <NextButton data={data} params={params}/>
         </div>
     );
 }
