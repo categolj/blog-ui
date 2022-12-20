@@ -50,7 +50,7 @@ export default function Entry({entryId, entry}) {
         <Head>
             <title>{entry.frontMatter.title} - IK.AM</title>
         </Head>
-        <h2><Link href={`/entries/${entryId}`}><a>{entry.frontMatter.title}</a></Link>
+        <h2><Link href={`/entries/${entryId}`}>{entry.frontMatter.title}</Link>
         </h2>
         <div className="text-sm">
             <Category category={category}/>

@@ -42,7 +42,7 @@ export function ListEntries({entries, size, lang}) {
             {entries.slice(0, size).map((entry) => {
                 return <li key={entry.entryId}>
                     <Link
-                        href={`/entries/${entry.entryId}${lang ? `/${lang}` : ''}`}><a>{entry.frontMatter.title}</a></Link>
+                        href={`/entries/${entry.entryId}${lang ? `/${lang}` : ''}`}>{entry.frontMatter.title}</Link>
                     &nbsp;{entryDate(entry)}
                 </li>;
             })}

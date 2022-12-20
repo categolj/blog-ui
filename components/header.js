@@ -8,7 +8,7 @@ export default function Header() {
     >{children}</li>;
     return (
         <div>
-            <h1><Link href="/"><a>IK.AM</a></Link></h1>
+            <h1><Link href="/">IK.AM</Link></h1>
             <p>
                 <a href="https://twitter.com/making">@making</a>&apos;s tech note
             </p>
@@ -16,32 +16,32 @@ export default function Header() {
             <ul className="list-disc list-inside">
                 <Item>
                     <Link href="/">
-                        <a style={{textDecoration: 'none'}}>Home</a>
+                        <span style={{textDecoration: 'none'}}>Home</span>
                     </Link>
                 </Item>
                 <Item>
                     <Link href="/entries">
-                        <a style={{textDecoration: 'none'}}>Entries</a>
+                        <span style={{textDecoration: 'none'}}>Entries</span>
                     </Link>
                 </Item>
                 <Item>
                     <Link href="/categories">
-                        <a style={{textDecoration: 'none'}}>Categories</a>
+                        <span style={{textDecoration: 'none'}}>Categories</span>
                     </Link>
                 </Item>
                 <Item>
                     <Link href="/tags">
-                        <a style={{textDecoration: 'none'}}>Tags</a>
+                        <span style={{textDecoration: 'none'}}>Tags</span>
                     </Link>
                 </Item>
                 <Item>
                     <Link href="/aboutme">
-                        <a style={{textDecoration: 'none'}}>About</a>
+                        <span style={{textDecoration: 'none'}}>About</span>
                     </Link>
                 </Item>
                 <Item>
                     <Link href="/info">
-                        <a style={{textDecoration: 'none'}}>Info</a>
+                        <span style={{textDecoration: 'none'}}>Info</span>
                     </Link>
                 </Item>
                 <Item>
