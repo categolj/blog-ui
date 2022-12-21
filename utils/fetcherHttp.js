@@ -36,7 +36,7 @@ const tracer = new Tracer({
     localServiceName: determineServiceName()
 });
 const wrapFetch = require('zipkin-instrumentation-fetch');
-const zipkinFetch = wrapFetch(fetch, {tracer});
+export const zipkinFetch = wrapFetch(fetch, {tracer});
 
 const tenantPrefix = (tenantId) => {
     return tenantId ? `/tenants/${tenantId}` : '';

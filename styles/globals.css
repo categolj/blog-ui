@@ -114,13 +114,40 @@ img[alt=image], img[alt=alt_text] {
     border-radius: 18px;
 }
 
-table.info-table > tbody > tr > td {
-    @apply text-sm rounded-md border-solid border border-gray-500 mx-1;
-    padding: 2px;
+table > thead > tr > th {
+    @apply text-sm border-solid border border-gray-500 mx-1;
+    padding: 3px;
+}
+
+table > tbody > tr > td {
+    @apply text-sm border-solid border border-gray-500 mx-1;
+    padding: 3px;
+}
+
+table, pre {
+    @apply mt-2 mb-4
 }
 
 .warning {
     padding: 10px;
     margin-bottom: 10px;
     @apply text-sm rounded-md bg-yellow-400 dark:bg-yellow-500;
+}
+
+.message-success {
+    padding: 10px;
+    margin-bottom: 10px;
+    @apply text-sm rounded-md bg-lime-400 dark:bg-lime-500;
+}
+
+.message-info {
+    padding: 10px;
+    margin-bottom: 10px;
+    @apply text-sm rounded-md bg-blue-400 dark:bg-blue-500;
+}
+
+.message-error {
+    padding: 10px;
+    margin-bottom: 10px;
+    @apply text-sm rounded-md bg-rose-400 dark:bg-rose-500;
 }

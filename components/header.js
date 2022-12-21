@@ -35,13 +35,13 @@ export default function Header() {
                     </Link>
                 </Item>
                 <Item>
-                    <Link href="/aboutme">
-                        <span style={{textDecoration: 'none'}}>About</span>
+                    <Link href="/notes">
+                        <span style={{textDecoration: 'none'}}>Note</span>
                     </Link>
                 </Item>
                 <Item>
-                    <Link href="/info">
-                        <span style={{textDecoration: 'none'}}>Info</span>
+                    <Link href="/aboutme">
+                        <span style={{textDecoration: 'none'}}>About</span>
                     </Link>
                 </Item>
                 <Item>
