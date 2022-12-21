@@ -47,6 +47,15 @@ export default function Subscribe() {
                 });
             }
         }
+        if (!token) {
+            setMessage({
+                status: 'warning',
+                text: <>アカウント情報を入力した上で、Subscribeボタンをクリックし、記事を購読状態にしてください。<br/>
+                    <strong>note.comのアカウントではありません</strong>。note.comとは別に当システムにアカウントを作成する必要があります。<br/>
+                    アカウント登録済みの場合は<Link href={`/note/login`}>こちら</Link>からログインしてください。
+                    未登録の場合は<Link href={`/note/signup`}>こちら</Link>から登録してください</>
+            });
+        }
     };
     useEffect((noteId, token) => {
         loadNote(noteId, token).then();
