@@ -6,7 +6,7 @@ const replaceUiToApi = url => {
     if (url === 'http://localhost') {
         return 'http://localhost:8080';
     }
-    if (url.startsWith('http://blog.ik.am')) {
+    if (url.startsWith('https://blog.ik.am')) {
         // Old URL
         return DEFAULT_API_URL;
     }
@@ -20,7 +20,7 @@ const replaceUiToZipkin = url => {
     if (url === 'http://localhost') {
         return 'http://localhost:9411';
     }
-    if (url.startsWith('http://blog.ik.am')) {
+    if (url.startsWith('https://blog.ik.am')) {
         // Old URL
         return DEFAULT_ZIPKIN_URL;
     }
@@ -34,7 +34,7 @@ const replaceUiToNote = url => {
     if (url === 'http://localhost') {
         return 'http://localhost:9000';
     }
-    if (url.startsWith('http://blog.ik.am')) {
+    if (url.startsWith('https://blog.ik.am')) {
         // Old URL
         return DEFAULT_NOTE_URL;
     }
