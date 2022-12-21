@@ -84,7 +84,7 @@ export default function Entry({entryId, entry}) {
         </div>
         <hr/>
         {entry.frontMatter.tags.map(x => x.name).includes('Tanzu') &&
-            <p className={'warning'}>
+            <p className={'message-warning'}>
                 ️{`⚠️`} The content of this article is <strong>not supported</strong> by
                 VMware. Any issues arising from the content of this article are your
                 responsibility and please <strong>do not contact</strong> VMware Support.
