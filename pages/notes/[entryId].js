@@ -57,7 +57,7 @@ export default function Note() {
             }
         }
     };
-    useEffect(() => {
+    useEffect((entryId, token) => {
         loadNote(entryId, token).then()
     }, [entryId, token]);
     if (message) {
