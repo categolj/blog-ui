@@ -71,3 +71,7 @@ export async function fetchCategories(tenantId) {
 export async function fetchInfo() {
     return zipkinFetch(`${urlProvider.BLOG_API}/info`).then(res => res.json());
 }
+
+export async function fetchNoteInfo() {
+    return zipkinFetch(`${urlProvider.NOTE_API}/info`).then(res => res.json());
+}
