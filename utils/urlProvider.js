@@ -6,6 +6,10 @@ const replaceUiToApi = url => {
     if (url === 'http://localhost') {
         return 'http://localhost:8080';
     }
+    if (url.startsWith('http://blog.ik.am')) {
+        // Old URL
+        return DEFAULT_API_URL;
+    }
     if (url.startsWith('http://blog') || url.startsWith('https://blog')) {
         return url.replace('/blog.', '/blog-ui.').replace('-frontend', '-api').replace('-ui', '-api');
     }
@@ -16,6 +20,10 @@ const replaceUiToZipkin = url => {
     if (url === 'http://localhost') {
         return 'http://localhost:9411';
     }
+    if (url.startsWith('http://blog.ik.am')) {
+        // Old URL
+        return DEFAULT_ZIPKIN_URL;
+    }
     if (url.endsWith('pineapple.maki.lol')) {
         return 'https://zipkin.run.pineapple.maki.lol';
     }
@@ -25,6 +33,10 @@ const replaceUiToZipkin = url => {
 const replaceUiToNote = url => {
     if (url === 'http://localhost') {
         return 'http://localhost:9000';
+    }
+    if (url.startsWith('http://blog.ik.am')) {
+        // Old URL
+        return DEFAULT_NOTE_URL;
     }
     if (url.startsWith('http://blog') || url.startsWith('https://blog')) {
         const protocol = url.split(':')[0];
