@@ -9,28 +9,47 @@ import Login from "../note/login";
 import dynamic from "next/dynamic";
 import Jwt from "../../utils/jwt";
 
+const parseWwwAuthenticate = wwwAuthenticate => {
+    return new Map(wwwAuthenticate.replace('Bearer ', '')
+        .split(',')
+        .map(s => s.trim().split('=')));
+};
+
 function Index() {
     const [notes, setNotes] = useState(null);
     const [message, setMessage] = useState(null);
     const token = tokenHolder.getToken();
-    const loadNotes = () => {
+    const loadNotes = async () => {
         if (token) {
-            fetch(`${urlProvider.NOTE_API}/notes`, {
+            const response = await fetch(`${urlProvider.NOTE_API}/notes`, {
                 headers: {'Authorization': `Bearer ${token}`},
-            }).then(res => {
-                if (!res.ok) {
+            });
+            if (response.status === 401) {
+                const wwwAuthenticate = parseWwwAuthenticate(response.headers.get('www-authenticate'));
+                console.log(wwwAuthenticate.get('error_description'))
+                if (wwwAuthenticate.get('error') === '"invalid_token"' && wwwAuthenticate.get('error_description').indexOf('expired') > 0) {
                     setMessage({
-                        status: 'error',
-                        text: 'Failed to retrieve notes'
+                        status: 'warning',
+                        text: <>Tokenの有効期限が切れました。<Link
+                            href={`/note/login`}>こちら</Link>から再ログインしてください</>
                     });
-                    return [];
+                    return;
                 }
-                return res.json();
-            })
-                .then(data => setNotes(data));
+            }
+            if (!response.ok) {
+                setMessage({
+                    status: 'error',
+                    text: 'Failed to retrieve notes'
+                });
+                return;
+            }
+            const data = await response.json();
+            setNotes(data);
         }
     };
-    useEffect(loadNotes, [token]);
+    useEffect((token) => {
+        loadNotes(token).then();
+    }, [token]);
     return (token ? <>
             <Head>
                 <title>Notes - IK.AM</title>
