@@ -18,10 +18,13 @@ import {
     TwitterIcon,
     TwitterShareButton
 } from "react-share";
+import {useEffect} from "react";
+import {addCopyButton} from "../../utils/copy";
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, fetchEntry);
     entry = entry || data;
+    useEffect(addCopyButton, [entry]);
     if (!entry) {
         return <Loading/>;
     }

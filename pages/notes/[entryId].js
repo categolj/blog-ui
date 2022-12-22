@@ -9,6 +9,7 @@ import tokenHolder from "../../utils/tokenHolder";
 import urlProvider from "../../utils/urlProvider";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
+import {addCopyButton} from "../../utils/copy";
 
 export default function Note() {
     const router = useRouter();
@@ -57,6 +58,7 @@ export default function Note() {
             }
         }
     };
+    useEffect(addCopyButton, [entry]);
     useEffect((entryId, token) => {
         loadNote(entryId, token).then()
     }, [entryId, token]);
