@@ -9,7 +9,7 @@ import Login from "../note/login";
 import dynamic from "next/dynamic";
 import Jwt from "../../utils/jwt";
 
-const parseWwwAuthenticate = wwwAuthenticate => {
+export const parseWwwAuthenticate = wwwAuthenticate => {
     return new Map(wwwAuthenticate.replace('Bearer ', '')
         .split(',')
         .map(s => s.trim().split('=')));
@@ -26,7 +26,6 @@ function Index() {
             });
             if (response.status === 401) {
                 const wwwAuthenticate = parseWwwAuthenticate(response.headers.get('www-authenticate'));
-                console.log(wwwAuthenticate.get('error_description'))
                 if (wwwAuthenticate.get('error') === '"invalid_token"' && wwwAuthenticate.get('error_description').indexOf('expired') > 0) {
                     setMessage({
                         status: 'warning',

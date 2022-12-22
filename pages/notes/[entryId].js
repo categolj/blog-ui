@@ -10,6 +10,7 @@ import urlProvider from "../../utils/urlProvider";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {addCopyButton} from "../../utils/copy";
+import {parseWwwAuthenticate} from "./index";
 
 export default function Note() {
     const router = useRouter();
@@ -23,6 +24,17 @@ export default function Note() {
                 headers: {'Authorization': `Bearer ${token}`},
             });
             try {
+                if (response.status === 401) {
+                    const wwwAuthenticate = parseWwwAuthenticate(response.headers.get('www-authenticate'));
+                    if (wwwAuthenticate.get('error') === '"invalid_token"' && wwwAuthenticate.get('error_description').indexOf('expired') > 0) {
+                        setMessage({
+                            status: 'warning',
+                            text: <>Tokenの有効期限が切れました。<Link
+                                href={`/note/login`}>こちら</Link>から再ログインしてください</>
+                        });
+                        return;
+                    }
+                }
                 if (response.status === 404) {
                     setMessage({
                         status: 'error',
