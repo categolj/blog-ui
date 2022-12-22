@@ -17,7 +17,8 @@ export const addCopyButton = () => {
             copy.classList.remove('click');
         };
         copy.onclick = () => {
-            navigator.clipboard.writeText(pre.textContent);
+            const text = filterText(pre.textContent);
+            navigator.clipboard.writeText(text);
             copy.classList.add('click');
             clearTimeout(timeout);
             timeout = setTimeout(function () {
@@ -25,4 +26,22 @@ export const addCopyButton = () => {
             }, 3000);
         };
     });
+};
+
+const filterText = text => {
+    if (!text.startsWith('$')) {
+        return text;
+    }
+    const lines = text.substring(1).trimStart().split('\n');
+    const filtered = [];
+    let i = 0;
+    do {
+        const line = lines[i].trimEnd();
+        filtered.push(line);
+        if (!line.endsWith('\\')) {
+            break;
+        }
+        i++;
+    } while (i < lines.length);
+    return filtered.join('\n');
 };
