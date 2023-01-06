@@ -48,6 +48,7 @@ function Index() {
     };
     useEffect((token) => {
         loadNotes(token).then();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
     return (token ? <>
             <Head>

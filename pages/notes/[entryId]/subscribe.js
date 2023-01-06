@@ -59,6 +59,7 @@ export default function Subscribe() {
     };
     useEffect((noteId, token) => {
         loadNote(noteId, token).then();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [noteId, token]);
     return <>
         <Head>

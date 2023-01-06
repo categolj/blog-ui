@@ -72,7 +72,8 @@ export default function Note() {
     };
     useEffect(addCopyButton, [entry]);
     useEffect((entryId, token) => {
-        loadNote(entryId, token).then()
+        loadNote(entryId, token).then();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [entryId, token]);
     if (message) {
         return <p className={`message-${message.status}`}>
