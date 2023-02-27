@@ -1258,10 +1258,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-iconoir-react@^5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/iconoir-react/-/iconoir-react-5.3.2.tgz#43f6a20f643a04e0ce9befd6f2a1f0fd006bd2d7"
-  integrity sha512-5p5FQAkX6ZAuk1UE/4RmjI9BgI5FSqTbgyUT/m74bfHxl57YAuU7sRdnvrLe97I9IbbiC2uKnGl90xVcBD07rQ==
+iconoir-react@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/iconoir-react/-/iconoir-react-6.3.0.tgz#e28bb7dd0039957b46d96f5a415e0654d2f22433"
+  integrity sha512-JJD5XGW3fEw0kFpc0cxq/E6WmZSte+fi9RvwCCruZxh6QFEUoIEvf6eciOoVM24W1SGQloyo84PyqEa1NC6X2g==
 
 ieee754@^1.1.13:
   version "1.2.1"
