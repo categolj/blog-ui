@@ -77,11 +77,11 @@ export default function Entry({entryId, entry}) {
                 <span>🗓 Created at {entry.created.date}</span>}&nbsp;
             <span>
                 {`{`}✒️️&nbsp;<a
-                href={`https://github.com/making/ik.am_en/edit/master/content/${formatId(entryId)}.md`}>Edit</a>&nbsp;
+                href={`https://github.com/making/ik.am_en/edit/main/content/${formatId(entryId)}.md`}>Edit</a>&nbsp;
                 ⏰&nbsp;<a
-                href={`https://github.com/making/ik.am_en/commits/master/content/${formatId(entryId)}.md`}>History</a>&nbsp;
+                href={`https://github.com/making/ik.am_en/commits/main/content/${formatId(entryId)}.md`}>History</a>&nbsp;
                 🗑&nbsp;<a
-                href={`https://github.com/making/ik.am_en/delete/master/content/${formatId(entryId)}.md`}>Delete</a>{`}`}&nbsp;
+                href={`https://github.com/making/ik.am_en/delete/main/content/${formatId(entryId)}.md`}>Delete</a>{`}`}&nbsp;
                 🇯🇵&nbsp;<a href={`/entries/${entryId}`}>Original entry</a>
             </span>
         </div>
