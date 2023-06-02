@@ -35,7 +35,7 @@ export default function Entry({entryId, entry}) {
                 <div>
                     <article>
                         🙇‍ Sorry, this entry is not yet translated.<br/><br/>
-                        Please use Google Translate bellow:<br/><br/>
+                        Please use Google Translate below:<br/><br/>
                         🌎 <a href={url}>{url}</a>
                     </article>
                 </div>
