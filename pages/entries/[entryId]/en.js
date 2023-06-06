@@ -18,13 +18,22 @@ import {
     TwitterIcon,
     TwitterShareButton
 } from "react-share";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {addCopyButton} from "../../../utils/copy";
+import {postCounter} from "../../../utils/counter";
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, (entryId) => fetchEntry(entryId, 'en'));
+    const [counter, setCounter] = useState(null);
     entry = entry || data;
     useEffect(addCopyButton, [entry]);
+    let sent = false;
+    useEffect(() => {
+        if (!sent) {
+            postCounter(entryId).then(setCounter);
+            sent = true;
+        }
+    }, []);
     if (!entry) {
         return <Loading/>;
     }
@@ -84,6 +93,9 @@ export default function Entry({entryId, entry}) {
                 href={`https://github.com/making/ik.am_en/delete/main/content/${formatId(entryId)}.md`}>Delete</a>{`}`}&nbsp;
                 🇯🇵&nbsp;<a href={`/entries/${entryId}`}>Original entry</a>
             </span>
+            {counter && <>
+                <br/><span>{counter.counter} views since {counter.from}</span>
+            </>}
         </div>
         <hr/>
         {entry.frontMatter.tags.map(x => x.name).includes('Tanzu') &&
