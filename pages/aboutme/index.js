@@ -36,9 +36,9 @@ export default function Index() {
         <h4><a href={'https://pivotal.io'}>Pivotal</a></h4>
         <dl>
             <dt>Sep 2018 - Apr 2020</dt>
-            <dd>Advisory Solutions Architect (P5),Tokyo</dd>
+            <dd>Advisory Solutions Architect (P5), Tokyo</dd>
             <dt>Jan 2016 - Aug 2018</dt>
-            <dd>Senior Solutions Architect (P4),Tokyo</dd>
+            <dd>Senior Solutions Architect (P4), Tokyo</dd>
         </dl>
         <h4><a href={'https://www.nttdata.com'}>NTTDATA</a></h4>
         <dl>
