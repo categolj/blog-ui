@@ -27,35 +27,35 @@ h2 {
 }
 
 h2:before {
-    content: "🍋️️️ "
+    content: "## "
 }
 
 h3 {
-    @apply font-semibold py-3 underline decoration-0 underline-offset-4 decoration-wavy;
+    @apply font-semibold py-3 underline decoration-0 underline-offset-4;
 }
 
 h3:before {
-    content: "☕️ "
+    content: "### "
 }
 
 h4 {
-    @apply py-1
+    @apply font-semibold py-3
 }
 
 h4:before {
-    content: "🍃 "
+    content: "#### "
 }
 
 h5 {
-    @apply py-1
+    @apply font-semibold py-3
 }
 
 h5:before {
-    content: "✈️️ "
+    content: "##### "
 }
 
 h6:before {
-    content: "☁️ "
+    content: "###### "
 }
 
 dt {
