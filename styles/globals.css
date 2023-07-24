@@ -1,6 +1,3 @@
-@import "//fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=latin,cyrillic-ext,greek-ext,cyrillic,greek,vietnamese,latin-ext";
-@import "//fonts.googleapis.com/css?family=Source+Code+Pro";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +6,8 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font: 14px/1.54 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
 }
 
 * {
@@ -78,7 +76,6 @@ h4 + dl {
 
 pre > code {
     @apply text-sm;
-    font-family: 'Source Code Pro', monospace
 }
 
 blockquote {
