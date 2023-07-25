@@ -228,3 +228,14 @@ table, pre {
 .div-copy.click .tooltip-copy::after {
     opacity: 1;
 }
+
+.banner {
+    text-align: justify;
+    display: inline-block;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 13px 0;
+    font-size: 10px;
+    font-family: monospace, -webkit-pictograph;
+    line-height: 1;
+}

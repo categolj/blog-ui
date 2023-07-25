@@ -16,22 +16,20 @@ export default function Home({entries}) {
     const {data: latest, error: errorLatest} = useSWR({size: 15}, fetchEntries);
     const {data: github, error: errorGithub} = useSWR('/github', fetchGithub);
     const {data: presos, error: errorPresos} = useSWR('/presos', fetchPresentations);
-    return (
-        <div>
-            <Head>
-                <title>IK.AM</title>
-                <link rel="alternate" type="application/rss+xml" title="IK.AM"
-                      href="/feed"/>
-            </Head>
-            <h2>Home</h2>
-            <h3>Latest Entries</h3>
-            <ListEntries entries={entries || latest}/>
-            <h3>Recent GitHub Updates</h3>
-            <Github items={github}/>
-            <h3>Presentations</h3>
-            <Presentations items={presos}/>
-        </div>
-    );
+    return (<div>
+        <Head>
+            <title>IK.AM</title>
+            <link rel="alternate" type="application/rss+xml" title="IK.AM"
+                  href="/feed"/>
+        </Head>
+        <h2>Home</h2>
+        <h3>Latest Entries</h3>
+        <ListEntries entries={entries || latest}/>
+        <h3>Recent GitHub Updates</h3>
+        <Github items={github}/>
+        <h3>Presentations</h3>
+        <Presentations items={presos}/>
+    </div>);
 }
 
 export async function getServerSideProps({req}) {
