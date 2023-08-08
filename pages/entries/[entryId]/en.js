@@ -39,7 +39,7 @@ export default function Entry({entryId, entry}) {
     }
     if (entry.status) {
         if (entry.status === 404) {
-            const url = `https://github-com.translate.goog/making/blog.ik.am/blob/master/content/${formatId(entryId)}.md?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja&_x_tr_pto=wapp`;
+            const url = `https://raw-githubusercontent-com.translate.goog/making/blog.ik.am/master/content/${formatId(entryId)}.md?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp`;
             return (
                 <div>
                     <article>
