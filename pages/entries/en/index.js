@@ -21,7 +21,7 @@ export default function Entries({entries}) {
     entries = entries || data;
     return (
         <div>
-            <NextSeo title='Entries (en)'
+            <NextSeo title='Entries(en)'
                      canonical='https://ik.am/entries/en'
                      openGraph={{
                          url: 'https://ik.am/entries/en'

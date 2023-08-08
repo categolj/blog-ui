@@ -30,9 +30,12 @@ export default function Header() {
                 </Link>
             </Item>
             <Item>
-                <Link href="/entries">
-                    <span style={{textDecoration: 'none'}}>Entries</span>
-                </Link>
+                {router.pathname.endsWith('/en') ?
+                    <Link href="/entries/en">
+                        <span style={{textDecoration: 'none'}}>Entries(en)</span>
+                    </Link> : <Link href="/entries">
+                        <span style={{textDecoration: 'none'}}>Entries</span>
+                    </Link>}
             </Item>
             <Item>
                 <Link href="/categories">
