@@ -238,4 +238,5 @@ table, pre {
     font-size: 10px;
     font-family: monospace, -webkit-pictograph;
     line-height: 1;
+    cursor: pointer;
 }

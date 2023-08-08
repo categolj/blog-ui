@@ -1,14 +1,17 @@
 import Link from 'next/link';
 import ThemeButton from "./theme-button";
 import SearchBox from "./searchbox";
+import {useRouter} from 'next/router';
 
 export default function Header() {
+    const router = useRouter();
+
     const Item = ({children}) => <li
         className="inline pr-3 font-semibold"
     >{children}</li>;
     return (<div>
         <h1 style={{display: 'none'}}><Link href="/">IK.AM</Link></h1>
-        <p className="banner" aria-hidden={true}>
+        <p className="banner" onClick={() => router.push('/')} aria-hidden={true}>
             ╭━━┳╮╭━╮╭━━━┳━╮╭━╮<br/>
             ╰┫┣┫┃┃╭╯┃╭━╮┃┃╰╯┃┃<br/>
             ╱┃┃┃╰╯╯╱┃┃╱┃┃╭╮╭╮┃<br/>
