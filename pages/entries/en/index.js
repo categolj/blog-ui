@@ -27,9 +27,9 @@ export default function Entries({entries}) {
                          url: 'https://ik.am/entries/en'
                      }}/>
             <Head>
-                <title>Entries (en) - IK.AM</title>
+                <title>Entries(en) - IK.AM</title>
             </Head>
-            <h2>Entries (en)</h2>
+            <h2>Entries(en)</h2>
             <ListEntries entries={entries} size={size} lang={'en'}/>
             <NextButton data={data} params={params}/>
         </div>
