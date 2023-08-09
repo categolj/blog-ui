@@ -242,7 +242,7 @@ table, pre {
 }
 
 .dark .banner {
-    --interval: 1s;
+    --interval: 10s;
     color: lightyellow;
     --color1: yellow;
     --color2: lime;
