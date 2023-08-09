@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ThemeButton from "./theme-button";
 import SearchBox from "./searchbox";
 import {useRouter} from 'next/router';
+import Banner from "./banner";
 
 export default function Header() {
     const router = useRouter();
@@ -11,14 +12,7 @@ export default function Header() {
     >{children}</li>;
     return (<div>
         <h1 style={{display: 'none'}}><Link href="/">IK.AM</Link></h1>
-        <p className="banner" onClick={() => router.push('/')} aria-hidden={true}>
-            ╭━━┳╮╭━╮╭━━━┳━╮╭━╮<br/>
-            ╰┫┣┫┃┃╭╯┃╭━╮┃┃╰╯┃┃<br/>
-            ╱┃┃┃╰╯╯╱┃┃╱┃┃╭╮╭╮┃<br/>
-            ╱┃┃┃╭╮┃╱┃╰━╯┃┃┃┃┃┃<br/>
-            ╭┫┣┫┃┃╰┳┫╭━╮┃┃┃┃┃┃<br/>
-            ╰━━┻╯╰━┻┻╯╱╰┻╯╰╯╰╯<br/>
-        </p>
+        <Banner onClick={() => router.push('/')}/>
         <p>
             <a href="https://twitter.com/making">@making</a>&apos;s tech note
         </p>
@@ -30,12 +24,11 @@ export default function Header() {
                 </Link>
             </Item>
             <Item>
-                {router.pathname.endsWith('/en') ?
-                    <Link href="/entries/en">
-                        <span style={{textDecoration: 'none'}}>Entries(en)</span>
-                    </Link> : <Link href="/entries">
-                        <span style={{textDecoration: 'none'}}>Entries</span>
-                    </Link>}
+                {router.pathname.endsWith('/en') ? <Link href="/entries/en">
+                    <span style={{textDecoration: 'none'}}>Entries(en)</span>
+                </Link> : <Link href="/entries">
+                    <span style={{textDecoration: 'none'}}>Entries</span>
+                </Link>}
             </Item>
             <Item>
                 <Link href="/categories">
