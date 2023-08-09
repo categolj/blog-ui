@@ -1,4 +1,4 @@
-import Router from "next/router";
+import {useRouter} from "next/router";
 
 const appendQuery = (url, query) => {
     if (query) {
@@ -8,15 +8,17 @@ const appendQuery = (url, query) => {
 }
 
 export default function NextButton({data, params}) {
-    const size = params.size - 1;
+    const router = useRouter();
+    const size = params.size;
     const currentPage = params.page;
-    const hasNext = data && data.length > size;
+    const hasNext = data && data.length >= size;
     const hasPrev = currentPage !== 0;
-    const nextUrl = appendQuery(`?page=${currentPage + 1}&size=${size}`, params.query);
-    const prevUrl = appendQuery(`?page=${currentPage - 1}&size=${size}`, params.query);
+    const path = router.asPath.split('?')[0]
+    const nextUrl = appendQuery(`${path}?page=${currentPage + 1}&size=${size}`, params.query);
+    const prevUrl = appendQuery(`${path}?page=${currentPage - 1}&size=${size}`, params.query);
     const go = (evt, url) => {
         evt.preventDefault();
-        Router.push(url);
+        router.push(url);
     }
     return <p>
         {hasPrev && <a href={prevUrl} onClick={evt => go(evt, prevUrl)}>◀️ Prev️</a>}

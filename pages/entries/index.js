@@ -12,8 +12,8 @@ export default function Entries({entries}) {
     const router = useRouter();
     let {query, page, size} = router.query;
     page = Number(page || 0);
-    size = Number(size || 50);
-    const params = {size: size + 1, page: page};
+    size = Number(size || 30);
+    const params = {size: size, page: page};
     if (query) {
         params.query = query;
     }
