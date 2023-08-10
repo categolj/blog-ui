@@ -1,53 +1,52 @@
 import Link from 'next/link';
-import useSWR from 'swr';
+import useSWRInfinite from 'swr/infinite'
 import {isPC} from "../../utils/userAgents";
 import {fetchEntries} from "../../utils/fetcherHttp";
 import Loading from "../../components/loading";
+import LoadMore from "../../components/loadmore-button";
 import {useRouter} from "next/router";
 import Head from "next/head";
-import NextButton from "../../components/next-button";
 import {NextSeo} from 'next-seo'
 
 export default function Entries({entries}) {
     const router = useRouter();
-    let {query, page, size} = router.query;
-    page = Number(page || 0);
-    size = Number(size || 30);
-    const params = {size: size, page: page};
-    if (query) {
-        params.query = query;
+    let {query, limit} = router.query;
+    limit = limit || 30;
+    const getKey = (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.length) return null;
+        const params = {page: pageIndex, size: limit};
+        if (query) {
+            params.query = query;
+        }
+        return params;
     }
-    const {data, error} = useSWR(params, fetchEntries);
-    entries = entries || data;
-    return (
-        <div>
-            <NextSeo title='Entries'
-                     canonical='https://ik.am/entries'
-                     openGraph={{
-                         url: 'https://ik.am/entries'
-                     }}/>
-            <Head>
-                <title>Entries - IK.AM</title>
-            </Head>
-            <h2>Entries</h2>
-            <ListEntries entries={entries} size={size}/>
-            <NextButton data={data} params={params}/>
-        </div>
-    );
+    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries)
+    entries = entries || (data && [].concat(...data));
+    return (<div>
+        <NextSeo title='Entries'
+                 canonical='https://ik.am/entries'
+                 openGraph={{
+                     url: 'https://ik.am/entries'
+                 }}/>
+        <Head>
+            <title>Entries - IK.AM</title>
+        </Head>
+        <h2>Entries</h2>
+        <ListEntries entries={entries}/>
+        <LoadMore data={data} limit={limit} size={size} setSize={setSize}/>
+    </div>);
 }
 
 export function ListEntries({entries, size, lang}) {
-    return (entries ?
-        <ul className="list-disc list-inside">
-            {entries.slice(0, size).map((entry) => {
-                return <li key={entry.entryId}>
-                    <Link
-                        href={`/entries/${entry.entryId}${lang ? `/${lang}` : ''}`}>{entry.frontMatter.title}</Link>
-                    &nbsp;{entryDate(entry)}
-                </li>;
-            })}
-        </ul>
-        : <Loading/>);
+    return (entries ? <ul className="list-disc list-inside">
+        {entries.slice(0, size).map((entry) => {
+            return <li key={entry.entryId}>
+                <Link
+                    href={`/entries/${entry.entryId}${lang ? `/${lang}` : ''}`}>{entry.frontMatter.title}</Link>
+                &nbsp;{entryDate(entry)}
+            </li>;
+        })}
+    </ul> : <Loading/>);
 }
 
 export async function getServerSideProps({req, query}) {

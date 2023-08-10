@@ -1,39 +1,39 @@
-import useSWR from 'swr';
 import {isPC} from "../../../utils/userAgents";
 import {fetchEntries} from "../../../utils/fetcherHttp";
 import {useRouter} from "next/router";
 import Head from "next/head";
-import NextButton from "../../../components/next-button";
 import {NextSeo} from 'next-seo'
 import {ListEntries} from "../index";
+import useSWRInfinite from "swr/infinite";
+import LoadMore from "../../../components/loadmore-button";
 
 export default function Entries({entries}) {
     const router = useRouter();
-    let {query, page, size} = router.query;
-    page = Number(page || 0);
-    size = Number(size || 50);
-    const params = {size: size + 1, page: page};
-    if (query) {
-        params.query = query;
+    let {query, limit} = router.query;
+    limit = limit || 30;
+    const getKey = (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.length) return null;
+        const params = {page: pageIndex, size: limit};
+        if (query) {
+            params.query = query;
+        }
+        return params;
     }
-    params.lang = 'en';
-    const {data, error} = useSWR(params, params => fetchEntries(params, 'en'));
-    entries = entries || data;
-    return (
-        <div>
-            <NextSeo title='Entries(en)'
-                     canonical='https://ik.am/entries/en'
-                     openGraph={{
-                         url: 'https://ik.am/entries/en'
-                     }}/>
-            <Head>
-                <title>Entries(en) - IK.AM</title>
-            </Head>
-            <h2>Entries(en)</h2>
-            <ListEntries entries={entries} size={size} lang={'en'}/>
-            <NextButton data={data} params={params}/>
-        </div>
-    );
+    const {data, size, setSize} = useSWRInfinite(getKey, x => fetchEntries(x, 'en'))
+    entries = entries || (data && [].concat(...data));
+    return (<div>
+        <NextSeo title='Entries(en)'
+                 canonical='https://ik.am/entries/en'
+                 openGraph={{
+                     url: 'https://ik.am/entries/en'
+                 }}/>
+        <Head>
+            <title>Entries(en) - IK.AM</title>
+        </Head>
+        <h2>Entries(en)</h2>
+        <ListEntries entries={entries} lang={'en'}/>
+        <LoadMore data={data} limit={limit} size={size} setSize={setSize}/>
+    </div>);
 }
 
 export async function getServerSideProps({req, query}) {
@@ -41,6 +41,6 @@ export async function getServerSideProps({req, query}) {
     if (query.query) {
         params.query = query.query;
     }
-    const entries = isPC(req.headers) ? null : await fetchEntries(params);
+    const entries = isPC(req.headers) ? null : await fetchEntries(params, 'en');
     return {props: {entries: entries}};
 }

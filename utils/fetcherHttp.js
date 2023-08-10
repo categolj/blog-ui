@@ -3,10 +3,7 @@ import urlProvider from "./urlProvider";
 process.hrtime = require('browser-process-hrtime');
 
 const {
-    Tracer,
-    BatchRecorder,
-    jsonEncoder: {JSON_V2},
-    ExplicitContext
+    Tracer, BatchRecorder, jsonEncoder: {JSON_V2}, ExplicitContext
 } = require('zipkin');
 const {HttpLogger} = require('zipkin-transport-http');
 
@@ -25,15 +22,11 @@ const determineServiceName = () => {
     }
 };
 const tracer = new Tracer({
-    ctxImpl: new ExplicitContext(),
-    recorder: new BatchRecorder({
+    ctxImpl: new ExplicitContext(), recorder: new BatchRecorder({
         logger: new HttpLogger({
-            endpoint: `${urlProvider.ZIPKIN_API}/api/v2/spans`,
-            jsonEncoder: JSON_V2
+            endpoint: `${urlProvider.ZIPKIN_API}/api/v2/spans`, jsonEncoder: JSON_V2
         })
-    }),
-    traceId128Bit: true,
-    localServiceName: determineServiceName()
+    }), traceId128Bit: true, localServiceName: determineServiceName()
 });
 const wrapFetch = require('zipkin-instrumentation-fetch');
 export const zipkinFetch = wrapFetch(fetch, {tracer});
@@ -52,6 +45,12 @@ export async function fetchEntries(data, tenantId) {
     const params = new URLSearchParams();
     for (let k in data) {
         params.set(k, data[k]);
+    }
+    if (params.get('tag') === 'undefined') {
+        return [];
+    }
+    if (params.get('categories') === 'undefined') {
+        return [];
     }
     return zipkinFetch(`${urlProvider.BLOG_API}${tenantPrefix(tenantId)}/entries?${params}`, basicAuth).then(res => res.json()).then(j => j.content);
 }

@@ -1,23 +1,25 @@
-import useSWR from 'swr'
-
 import {useRouter} from "next/router";
 import {ListEntries} from "../../entries";
-import Loading from "../../../components/loading";
 import {fetchEntries} from "../../../utils/fetcherHttp";
 import Head from "next/head";
 import {NextSeo} from "next-seo";
-import NextButton from "../../../components/next-button";
+import useSWRInfinite from "swr/infinite";
+import LoadMore from "../../../components/loadmore-button";
 
 export default function EntriesByTag() {
     const router = useRouter();
-    let {query, page, size, tag} = router.query;
-    page = Number(page || 0);
-    size = Number(size || 30);
-    const params = {tag: tag, size: size, page: page};
-    if (query) {
-        params.query = query;
+    let {tag, query, limit} = router.query;
+    limit = limit || 30;
+    const getKey = (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.length) return null;
+        const params = {page: pageIndex, size: limit, tag};
+        if (query) {
+            params.query = query;
+        }
+        return params;
     }
-    const {data, error} = useSWR(params, fetchEntries);
+    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries)
+    const entries = (data && [].concat(...data));
     return <div>
         <NextSeo title={`Entries (Tag: ${tag})`}
                  canonical={`https://ik.am/tags/${tag}/entries`}
@@ -28,7 +30,7 @@ export default function EntriesByTag() {
             <title>Entries (Tag: {`🏷 ${tag}`}) - IK.AM</title>
         </Head>
         <h2>Entries (Tag: {`🏷 ${tag}`})</h2>
-        {data ? <ListEntries entries={data} size={size}/> : <Loading/>}
-        <NextButton data={data} params={params}/>
+        <ListEntries entries={entries}/>
+        <LoadMore data={data} limit={limit} size={size} setSize={setSize}/>
     </div>;
 }

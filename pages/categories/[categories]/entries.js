@@ -1,28 +1,28 @@
-import useSWR from 'swr'
-
 import {useRouter} from "next/router";
 import {fetchEntries} from "../../../utils/fetcherHttp";
 import {ListEntries} from "../../entries";
 import Category from "../../../components/category";
-import Loading from "../../../components/loading";
 import Head from "next/head";
 import {NextSeo} from "next-seo";
-import NextButton from "../../../components/next-button";
+import useSWRInfinite from "swr/infinite";
+import LoadMore from "../../../components/loadmore-button";
 
 export default function EntriesByCategory() {
     const router = useRouter();
     const categoriesQuery = router.query.categories;
     const categories = categoriesQuery && categoriesQuery.split(',');
-    let {query, page, size, tag} = router.query;
-    page = Number(page || 0);
-    size = Number(size || 30);
-    const params = {categories, size: size, page: page};
-    if (query) {
-        params.query = query;
+    let {query, limit} = router.query;
+    limit = limit || 30;
+    const getKey = (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.length) return null;
+        const params = {page: pageIndex, size: limit, categories};
+        if (query) {
+            params.query = query;
+        }
+        return params;
     }
-    const {
-        data, error
-    } = useSWR(params, fetchEntries);
+    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries)
+    const entries = (data && [].concat(...data));
     return <div>
         <NextSeo title={`Entries (Category: ${categories && categories.join('/')})`}
                  canonical={`https://ik.am/categories/${categoriesQuery}/entries`}
@@ -34,8 +34,8 @@ export default function EntriesByCategory() {
                 IK.AM</title>
         </Head>
         <h2>Entries (Category: <Category category={categories}/>)</h2>
-        {(data && data.length > 0) ? <ListEntries entries={data} size={size}/> : <Loading/>}
-        <NextButton data={data} params={params}/>
+        <ListEntries entries={entries}/>
+        <LoadMore data={data} limit={limit} size={size} setSize={setSize}/>
     </div>;
 
 }
