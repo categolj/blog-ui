@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kevincobain2000/json-to-html-table": "^1.0.1",
+    "@kevincobain2000/json-to-html-table": "^1.0.4",
     "browser-process-hrtime": "^1.0.0",
     "github-slugger": "^2.0.0",
     "iconoir-react": "^6.8.0",
