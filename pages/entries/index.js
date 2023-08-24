@@ -12,15 +12,10 @@ export default function Entries({entries}) {
     const router = useRouter();
     let {query, limit} = router.query;
     limit = limit || 30;
-    const getKey = (pageIndex, previousPageData) => {
-        if (previousPageData && !previousPageData.length) return null;
-        const params = {page: pageIndex, size: limit};
-        if (query) {
-            params.query = query;
-        }
-        return params;
-    }
-    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries)
+    const getKey = getCursorKey({query, limit}, {});
+    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries, {
+        revalidateFirstPage: false
+    });
     entries = entries || (data && [].concat(...data));
     return (<div>
         <NextSeo title='Entries'
@@ -69,3 +64,15 @@ export const entryDate = (entry) => {
     }
 }
 export const formatId = id => ("0000" + id).substr(-5);
+
+export const getCursorKey = ({query, limit}, others) => {
+    return (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.length) return null;
+        const params = {...{size: limit}, ...others};
+        if (query) {
+            params.query = query;
+        }
+        params.cursor = pageIndex !== 0 ? previousPageData[previousPageData.length - 1].updated.date : "";
+        return params;
+    };
+};

@@ -1,5 +1,5 @@
 import {useRouter} from "next/router";
-import {ListEntries} from "../../entries";
+import {getCursorKey, ListEntries} from "../../entries";
 import {fetchEntries} from "../../../utils/fetcherHttp";
 import Head from "next/head";
 import {NextSeo} from "next-seo";
@@ -10,15 +10,10 @@ export default function EntriesByTag() {
     const router = useRouter();
     let {tag, query, limit} = router.query;
     limit = limit || 30;
-    const getKey = (pageIndex, previousPageData) => {
-        if (previousPageData && !previousPageData.length) return null;
-        const params = {page: pageIndex, size: limit, tag};
-        if (query) {
-            params.query = query;
-        }
-        return params;
-    }
-    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries)
+    const getKey = getCursorKey({query, limit}, {tag});
+    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries, {
+        revalidateFirstPage: false
+    });
     const entries = (data && [].concat(...data));
     return <div>
         <NextSeo title={`Entries (Tag: ${tag})`}

@@ -3,7 +3,7 @@ import {fetchEntries} from "../../../utils/fetcherHttp";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import {NextSeo} from 'next-seo'
-import {ListEntries} from "../index";
+import {getCursorKey, ListEntries} from "../index";
 import useSWRInfinite from "swr/infinite";
 import LoadMore from "../../../components/loadmore-button";
 
@@ -11,15 +11,10 @@ export default function Entries({entries}) {
     const router = useRouter();
     let {query, limit} = router.query;
     limit = limit || 30;
-    const getKey = (pageIndex, previousPageData) => {
-        if (previousPageData && !previousPageData.length) return null;
-        const params = {page: pageIndex, size: limit};
-        if (query) {
-            params.query = query;
-        }
-        return params;
-    }
-    const {data, size, setSize} = useSWRInfinite(getKey, x => fetchEntries(x, 'en'))
+    const getKey = getCursorKey({query, limit}, {});
+    const {data, size, setSize} = useSWRInfinite(getKey, x => fetchEntries(x, 'en'), {
+        revalidateFirstPage: false
+    });
     entries = entries || (data && [].concat(...data));
     return (<div>
         <NextSeo title='Entries(en)'

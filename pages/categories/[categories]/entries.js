@@ -1,6 +1,6 @@
 import {useRouter} from "next/router";
 import {fetchEntries} from "../../../utils/fetcherHttp";
-import {ListEntries} from "../../entries";
+import {getCursorKey, ListEntries} from "../../entries";
 import Category from "../../../components/category";
 import Head from "next/head";
 import {NextSeo} from "next-seo";
@@ -13,15 +13,10 @@ export default function EntriesByCategory() {
     const categories = categoriesQuery && categoriesQuery.split(',');
     let {query, limit} = router.query;
     limit = limit || 30;
-    const getKey = (pageIndex, previousPageData) => {
-        if (previousPageData && !previousPageData.length) return null;
-        const params = {page: pageIndex, size: limit, categories};
-        if (query) {
-            params.query = query;
-        }
-        return params;
-    }
-    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries)
+    const getKey = getCursorKey({query, limit}, {categories});
+    const {data, size, setSize} = useSWRInfinite(getKey, fetchEntries, {
+        revalidateFirstPage: false
+    });
     const entries = (data && [].concat(...data));
     return <div>
         <NextSeo title={`Entries (Category: ${categories && categories.join('/')})`}
