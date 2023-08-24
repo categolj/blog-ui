@@ -25,10 +25,7 @@
     "rss": "^1.2.2",
     "sharp": "^0.32.4",
     "swr": "^2.2.0",
-    "woothee": "^1.11.1",
-    "zipkin": "^0.22.0",
-    "zipkin-instrumentation-fetch": "^0.22.0",
-    "zipkin-transport-http": "^0.22.0"
+    "woothee": "^1.11.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
