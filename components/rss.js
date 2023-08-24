@@ -9,7 +9,7 @@ export async function generateFeedXml() {
         feed_url: "https://ik.am/feed",
         language: 'ja',
     });
-    const entries = await fetchEntries({size: 20});
+    const entries = await fetchEntries({cursor: '', size: 20});
     entries.forEach((entry) => {
         feed.item({
             title: entry.frontMatter.title,

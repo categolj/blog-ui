@@ -13,7 +13,7 @@ const fetchPresentations = () => fetch('https://raw.githubusercontent.com/catego
     .then(data => data.json());
 
 export default function Home({entries}) {
-    const {data: latest, error: errorLatest} = useSWR({size: 15}, fetchEntries);
+    const {data: latest, error: errorLatest} = useSWR({cursor: '', size: 15}, fetchEntries);
     const {data: github, error: errorGithub} = useSWR('/github', fetchGithub);
     const {data: presos, error: errorPresos} = useSWR('/presos', fetchPresentations);
     return (<div>

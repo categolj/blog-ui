@@ -72,7 +72,7 @@ export const getCursorKey = ({query, limit}, others) => {
         if (query) {
             params.query = query;
         }
-        params.cursor = pageIndex !== 0 ? previousPageData[previousPageData.length - 1].updated.date : "";
+        params.cursor = pageIndex !== 0 ? previousPageData[previousPageData.length - 1].updated.date : '';
         return params;
     };
 };
