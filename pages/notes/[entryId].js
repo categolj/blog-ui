@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import {entryDate, isIgnoreUpdateDate} from "../entries/index";
 import marked from "../../utils/marked";
-import {zipkinFetch as fetch} from "../../utils/fetcherHttp";
 import Loading from "../../components/loading";
 import Head from "next/head";
 import ScrollToTop from "react-scroll-to-top";

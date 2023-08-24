@@ -2,7 +2,6 @@ import Head from "next/head";
 import tokenHolder from "../../utils/tokenHolder";
 import {useEffect, useState} from 'react'
 import Link from "next/link";
-import {zipkinFetch as fetch} from "../../utils/fetcherHttp";
 import urlProvider from "../../utils/urlProvider";
 import Loading from "../../components/loading";
 import Login from "../note/login";
