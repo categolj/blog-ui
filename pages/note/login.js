@@ -4,7 +4,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Router from "next/router";
 import tokenHolder from "../../utils/tokenHolder";
-import {zipkinFetch as fetch} from "../../utils/fetcherHttp";
 
 export default function Login() {
     const [message, setMessage] = useState(null);

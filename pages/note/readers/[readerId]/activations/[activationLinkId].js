@@ -3,7 +3,6 @@ import Head from "next/head";
 import {useRouter} from "next/router";
 import urlProvider from "../../../../../utils/urlProvider";
 import Link from "next/link";
-import {zipkinFetch as fetch} from "../../../../../utils/fetcherHttp";
 
 export default function Activation() {
     const router = useRouter();

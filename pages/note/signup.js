@@ -2,7 +2,6 @@ import urlProvider from "../../utils/urlProvider";
 import {useState} from "react";
 import Head from "next/head";
 import Link from "next/link";
-import {zipkinFetch as fetch} from "../../utils/fetcherHttp";
 
 export default function PasswordReset() {
     const [message, setMessage] = useState(null);

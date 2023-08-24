@@ -3,7 +3,6 @@ import {useState} from "react";
 import Head from "next/head";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {zipkinFetch as fetch} from "../../../utils/fetcherHttp";
 
 export default function PasswordReset() {
     const router = useRouter();
