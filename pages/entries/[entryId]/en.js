@@ -18,13 +18,13 @@ export default function Entry({entryId, entry}) {
     }
     if (entry.status) {
         if (entry.status === 404) {
-            const url = `https://raw-githubusercontent-com.translate.goog/making/blog.ik.am/master/content/${formatId(entryId)}.md?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp`;
+            const url = `https://ik-am.translate.goog/entries/${entryId}?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp&_x_tr_hist=true`;
             return (
                 <div>
                     <article>
                         🙇‍ Sorry, this entry is not yet translated.<br/><br/>
-                        Please use Google Translate below:<br/><br/>
-                        🌎 <a href={url}>{url}</a>
+                        Please use Google Translate below or <a href={`https://github.com/making/ik.am_en/issues/new?title=Translation%20Request%20to%20${entryId}&body=Please%20translate%20https://ik.am/entries/${entryId}%20into%20English`}>file an issue</a> requesting the translation:<br/><br/>
+                        🌎 <a href={url}>{url}</a><br/>
                     </article>
                 </div>
             )
