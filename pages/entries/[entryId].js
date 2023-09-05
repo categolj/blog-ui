@@ -2,6 +2,7 @@ import Link from 'next/link';
 import {entryDate, formatId, isIgnoreUpdateDate} from "./index";
 import Tag from "../../components/tag";
 import Category from "../../components/category";
+import Counter from "../../components/counter";
 import {isPC} from "../../utils/userAgents";
 import useSWR from "swr";
 import marked from "../../utils/marked";
@@ -18,22 +19,13 @@ import {
     TwitterIcon,
     TwitterShareButton
 } from "react-share";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {addCopyButton} from "../../utils/copy";
-import {postCounter} from "../../utils/counter";
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, fetchEntry);
-    const [counter, setCounter] = useState(null);
     entry = entry || data;
     useEffect(addCopyButton, [entry]);
-    let sent = false;
-    useEffect(() => {
-        if (!sent) {
-            postCounter(entryId).then(setCounter);
-            sent = true;
-        }
-    }, []);
     if (!entry) {
         return <Loading/>;
     }
@@ -81,9 +73,7 @@ export default function Entry({entryId, entry}) {
                 href={`https://github.com/making/blog.ik.am/delete/master/content/${formatId(entryId)}.md`}>Delete</a>{`}`}&nbsp;
                 🌎&nbsp;<a href={`/entries/${entryId}/en`}>English Page</a>
             </span>
-            {counter && <>
-                <br/><span>{counter.counter} views since {counter.from}</span>
-            </>}
+            <Counter entryId={entryId}/>
         </div>
         <hr/>
         {entry.frontMatter.tags.map(x => x.name).includes('Tanzu') &&
