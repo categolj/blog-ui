@@ -2,11 +2,11 @@ import EntryHeader from "../../components/entry-header";
 import EntryFooter from "../../components/entry-footer";
 import Loading from "../../components/loading";
 import {isPC} from "../../utils/userAgents";
-import useSWR from "swr";
 import marked from "../../utils/marked";
 import {fetchEntry} from "../../utils/fetcherHttp";
-import {useEffect} from "react";
 import {addCopyButton} from "../../utils/copy";
+import useSWR from "swr";
+import {useEffect} from "react";
 
 export default function Entry({entryId, entry}) {
     const {data, error} = useSWR(entryId, fetchEntry);
