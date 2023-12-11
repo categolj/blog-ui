@@ -1814,10 +1814,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-marked@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-5.0.1.tgz#e1f7db63ce290daa5702f8d12f9853eceb7bc6e1"
-  integrity sha512-Nn9peC4lvIZdcfp8Uze6xk4ZYowkcj/K6+e/6rLHadhtjqeip/bYRxMgt3124IGGJ3RPs2uX5YVmAGbUutY18g==
+marked@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-11.0.1.tgz#f8010ec2e358c0f4efedbac1ed3dbac2c7f46cdc"
+  integrity sha512-P4kDhFEMlvLePBPRwOcMOv6+lYUbhfbSxJFs3Jb4Qx7v6K7l+k8Dxh9CEGfRvK71tL+qIFz5y7Pe4uzt4+/A3A==
 
 merge-stream@^2.0.0:
   version "2.0.0"
