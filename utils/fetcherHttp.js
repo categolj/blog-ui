@@ -6,12 +6,13 @@ const tenantPrefix = (tenantId) => {
 };
 
 const headers = () => {
-    let headers = {
-        'Authorization': 'Basic ' + btoa(`blog-ui:empty`)
-    }
     // https://github.com/vercel/next.js/issues/51233#issuecomment-1895446474
     propagation.inject(context.active(), headers);
-    return headers;
+    return {
+        ...headers, ...{
+            'Authorization': 'Basic ' + btoa(`blog-ui:empty`)
+        }
+    };
 };
 
 export async function fetchEntries(data, tenantId) {
